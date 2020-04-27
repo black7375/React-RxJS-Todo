@@ -20,6 +20,14 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "src/Settings",
+    "src/Tools",
+    "src/Generic",
+    "src/Elements",
+    "src/Layouts",
+    "src/Components",
+    "src/Trumps",
+    "src/Services"
   ]
 }
