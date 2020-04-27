@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback } from 'react';
+import useObservable from './Tools/useObservable';
+import { TodoItemT } from './Generic/TodoModel';
+import TodoService from './Services/TodoService';
+import TodoTemplate from './Layouts/TodoTemplate';
+import TodoInsert from './Components/TodoInsert';
+import TodoList from './Components/TodoList';
 
 function App() {
+  const todos = useObservable(TodoService.todos$);
+
+  const onInsert = useCallback((text: TodoItemT['text']) => { TodoService.addItem(text);  }, []);
+  const onRemove = useCallback((id:   TodoItemT['id']  ) => { TodoService.removeItem(id); }, []);
+  const onToggle = useCallback((id:   TodoItemT['id']  ) => { TodoService.toogleItem(id); }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoTemplate>
+      <TodoInsert onInsert={onInsert} />
+      <TodoList todos={todos!} onRemove={onRemove} onToggle={onToggle} />
+    </TodoTemplate>
   );
 }
 
