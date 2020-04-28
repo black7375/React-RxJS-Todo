@@ -1,0 +1,250 @@
+// ** Flex *********************************************************************
+// == Flex Container ===========================================================
+$DEFAULT-FLEX-MODE: flex;
+
+@mixin flex-container($mode: $DEFAULT-FLEX-MODE) {
+  display: $mode;
+}
+
+@mixin flex-container-all($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+
+  &:nth-child(1) {
+    @include flex-container($mode);
+  }
+}
+
+@mixin flex-container-inline() {
+  @include flex-container(inline-flex);
+}
+
+// alias
+@mixin flex-container-fit() {
+  @include flex-container-inline();
+}
+
+// -- Flex Container Start -----------------------------------------------------
+@mixin flex-container-flow($direction: row, $wrap: nowrap) {
+  flex-flow: $direction $wrap;
+}
+
+// -- Flex Container Start -----------------------------------------------------
+@mixin flex-container-start-left($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-direction: row;
+}
+
+@mixin flex-container-start-right($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-direction: row-reverse;
+}
+
+@mixin flex-container-start-top($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-direction: column;
+}
+
+@mixin flex-container-start-bottom($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-direction: column-reverse;
+}
+
+// -- Flex Container Line ------------------------------------------------------
+@mixin flex-container-line-single($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-wrap: nowrap;
+}
+
+@mixin flex-container-line-multi($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-wrap: wrap;
+}
+
+@mixin flex-container-line-multi-reverseY($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  flex-wrap: wrap-reverse;
+}
+
+// -- Flex Container Align -----------------------------------------------------
+@mixin flex-container-alignX-start($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: flex-start;
+}
+
+@mixin flex-container-alignX-end($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: flex-end;
+}
+
+@mixin flex-container-alignX-center($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: center;
+}
+
+@mixin flex-container-alignX-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: space-between;
+}
+
+@mixin flex-container-alignX-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: space-around;
+}
+
+@mixin flex-container-alignY-start($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-items: flex-start;
+}
+
+@mixin flex-container-alignY-end($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-items: flex-end;
+}
+
+@mixin flex-container-alignY-center($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-items: center;
+}
+
+@mixin flex-container-alignY-baseline($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-items: baseline;
+}
+
+@mixin flex-container-alignY-fill($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-items: stretch;
+}
+
+@mixin flex-container-alignY-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-content: space-between;
+}
+
+@mixin flex-container-alignY-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  align-content: space-around;
+}
+
+@mixin flex-container-alignY-multi-start($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-content: flex-start;
+}
+
+@mixin flex-container-alignY-multi-end($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-content: flex-end;
+}
+
+@mixin flex-container-alignY-multi-center($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-content: center;
+}
+
+@mixin flex-container-alignY-multi-fill($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-content: stretch;
+}
+
+@mixin flex-container-alignY-multi-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-content: space-between;
+}
+
+@mixin flex-container-alignY-multi-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-line-multi($mode);
+  align-items: space-around;
+}
+
+// Alias
+@mixin flex-container-alignX-center-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignX-edge($mode);
+}
+
+@mixin flex-container-alignX-center-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignX-uniform($mode);
+}
+
+@mixin flex-container-alignY-center-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignY-edge($mode);
+}
+
+@mixin flex-container-alignY-center-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignY-uniform($mode);
+}
+
+@mixin flex-container-alignY-multi-center-edge($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignY-multi-edge($mode);
+}
+
+@mixin flex-container-alignY-multi-center-uniform($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container-alignY-multi-uniform($mode);
+}
+
+
+// == Flex Item ================================================================
+$DEFAULT-FLEX-ORDER: 0;
+$DEFAULT-FLEX-SIZE: auto;
+$DEFAULT-FLEX-GROW: 0;
+$DEFAULT-FLEX-SHRINK: 1;
+
+@mixin flex-item($grow: $DEFAULT-FLEX-GROW, $shrink: $DEFAULT-FLEX-SHRINK, $basis: $DEFAULT-FLEX-SIZE) {
+  flex: $grow, $shrink, $basis;
+}
+
+// -- Flex Item Align ----------------------------------------------------------
+@mixin flex-item-alignY-start() {
+  align-self: flex-start;
+}
+
+@mixin flex-item-alignY-end() {
+  align-self: flex-end;
+}
+
+@mixin flex-item-alignY-center() {
+  align-self: center;
+}
+
+@mixin flex-item-alignY-baseline() {
+  align-self: baseline;
+}
+
+@mixin flex-item-alignY-fill() {
+  align-self: stretch;
+}
+
+// -- Flex Item Order ----------------------------------------------------------
+@mixin flex-item-order($order: $DEFAULT-FLEX-ORDER) {
+  order: $order;
+}
+
+@mixin flex-item-order-decrease($order: $DEFAULT-FLEX-ORDER) {
+  order: - $order;
+}
+
+// Alias
+@mixin flex-item-order-increase($order: $DEFAULT-FLEX-ORDER) {
+  @include flex-item-order($order);
+}
+
+// -- Flex Item Size -----------------------------------------------------------
+@mixin flex-item-size($size: $DEFAULT-FLEX-SIZE) {
+  flex-basis: $size;
+}
+
+@mixin flex-item-size-up($rate: $DEFAULT-FLEX-GROW) {
+  flex-grow: $rate;
+}
+
+@mixin flex-item-size-down($rate: $DEFAULT-FLEX-SHRINK) {
+  flex-shrink: $rate;
+}
+
+// Alias
+@mixin flex-item-size-increase($rate: $DEFAULT-FLEX-GROW) {
+  @include flex-item-size-up($rate);
+}
+
+@mixin flex-item-size-decrease($rate: $DEFAULT-FLEX-SHRINK) {
+  @include flex-item-size-down($rate);
+}
