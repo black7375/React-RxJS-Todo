@@ -9,9 +9,11 @@ interface TodoListProps {
 }
 
 const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
-  const TodoListItems = todos.map((todo: TodoItemT) => (
-    <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
-  ));
+  const TodoListItems = todos !== undefined
+                      ? todos.map((todo: TodoItemT) => (
+                        <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
+                      ))
+                      : (<div> Loading.. </div>);
   return (
     <div className="TodoList">
       {TodoListItems}

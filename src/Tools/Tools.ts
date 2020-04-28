@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Observable } from 'rxjs';
+import classNames from 'classnames/bind';
 
-function useObservable<T> (observable: Observable<T>) {
+// == RxJS =====================================================================
+export function useObservable<T> (observable: Observable<T>) {
   const [state, setState] = useState<T>();
 
   useEffect(() => {

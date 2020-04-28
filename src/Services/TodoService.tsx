@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { scan, map, publishReplay, refCount } from 'rxjs/operators'
-import { TodoItem, TodoItemsT, TodoItemT } from './TodoModel';
+import { TodoItem, TodoItemsT, TodoItemT } from '../Generic/TodoModel';
 
 // https://medium.com/@fahad19/using-rxjs-with-react-js-part-i-introduction-4d027ef55aa6
 // https://github.com/SiWonRyu/ReactWIthRxjs/blob/master/src/services/my-service.ts
@@ -10,8 +10,8 @@ import { TodoItem, TodoItemsT, TodoItemT } from './TodoModel';
 
 // == Large Size Sample ========================================================
 const largeItemSize = 2500;
-const largeInitItems = (() => {
-  const array: TodoItemsT = List([]);
+const largeInitItems = List((() => {
+  const array = [];
   for (let i = 0; i < largeItemSize; i++) {
     array.push(new TodoItem({
       id: i,
@@ -20,7 +20,7 @@ const largeInitItems = (() => {
     }));
   }
   return array;
-})();
+})());
 
 
 // == Core Events ==============================================================
