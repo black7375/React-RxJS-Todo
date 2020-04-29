@@ -1,0 +1,33 @@
+@import '../Tools/Tools.scss';
+
+$cyan: #00DAC6;
+$red: #DA0014;
+$primary-color: $cyan;
+
+// ** GreyScale *****************************************************************
+$white:       #F7F7F7;
+$realWhite:   #FFFFFF;
+$lightWhite:  lightColor($white, 1);
+$darkWhite:   darkColor($white, 1);
+$darkx2White: darkColor($white, 2);
+$darkx3White: darkColor($white, 3);
+$darkx4White: darkColor($white, 4);
+$darkx5White: darkColor($white, 5);
+
+
+$black:        #1C1C1C;
+$realBlack:    #000000;
+$lightBlack:   lightColor($black, 1);
+$lightx2Black: lightColor($black, 2);
+$lightx3Black: lightColor($black, 3);
+$lightx4Black: lightColor($black, 4);
+$lightx5Black: lightColor($black, 5);
+$darkBlack:    darkColor($black, 1);
+$darkx2Black:  darkColor($black, 2);
+$darkx3Black:  darkColor($black, 3);
+$darkx4Black:  darkColor($black, 4);
+$darkx5Black:  darkColor($black, 5);
+
+$lightGrey:  #828293;
+$mediumGrey: #707070;
+$darkGrey:   #555555;
