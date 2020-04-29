@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { TodoItemT } from '../Generic/TodoModel';
+import { AiOutlinePlus } from 'react-icons/ai';
+import './TodoInsert.scss';
 
 interface TodoInsertProps {
   onInsert: (text: TodoItemT['text']) => void;
@@ -35,7 +37,7 @@ const TodoInsert = ({ onInsert }: TodoInsertProps) => {
         ref={inputRef}
       />
       <button type="submit">
-        추가
+        <AiOutlinePlus />
       </button>
     </form>
   )

@@ -1,6 +1,9 @@
 import React from 'react';
-import cn from 'classnames'
-import { TodoItemT } from '../Generic/TodoModel'
+import cn from 'classnames';
+import { IoMdCheckmarkCircleOutline, IoIosRadioButtonOff } from 'react-icons/io';
+import { BsTrash } from 'react-icons/bs';
+import { TodoItemT } from '../Generic/TodoModel';
+import './TodoListItem.scss';
 
 export type ItemRemoveFT = (id: TodoItemT['id']) => void;
 export type ItemToggleFT = (id: TodoItemT['id']) => void;

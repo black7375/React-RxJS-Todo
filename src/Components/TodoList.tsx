@@ -1,6 +1,7 @@
 import React from 'react';
 import { TodoItemT, TodoItemsT } from '../Generic/TodoModel'
 import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoListItem';
+import './TodoList.scss'
 
 interface TodoListProps {
   todos:    TodoItemsT;
