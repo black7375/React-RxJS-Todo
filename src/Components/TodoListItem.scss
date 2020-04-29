@@ -7,7 +7,6 @@
   @include flex-container-alignX-edge;
   @include flex-container-alignY-center;
   cursor:  pointer;
-  padding: $default-padding + 0.2rem;
   &:nth-child(even) {
     background-color: $darkWhite;
   }
@@ -22,6 +21,7 @@
   }
 
   .remove {
+    padding: $default-padding + 0.2rem;
     svg {
       font-size: 1.5rem;
       color:     lightColor($red, 3);
@@ -37,6 +37,7 @@
     @include flex-container-start-left;
     @include flex-container-alignY-center;
     @include flex-item-size-up(1);
+    padding: $default-padding + 0.2rem;
 
     svg {
       font-size:  2rem;
