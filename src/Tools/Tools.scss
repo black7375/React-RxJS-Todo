@@ -1,3 +1,22 @@
+// ** Color ********************************************************************
+@function lightColor($color, $amount: 0) {
+  @return lighten($color, 2 * $amount);
+}
+@function darkColor($color, $amount: 0) {
+  @return darken($color, 2 * $amount);
+}
+
+// ** Font *********************************************************************
+@mixin font-legibility() {
+  -webkit-text-stroke-width: 0.04px;
+  -webkit-font-smoothing:    antialiased;
+  -moz-osx-font-smoothing:   grayscale;
+  text-shadow:               0px 0px 0.001px #ACACAC;
+  text-rendering:            geometricPrecision;
+  font-kerning:              normal;
+  font-variant-ligatures:    normal;
+}
+
 // ** Flex *********************************************************************
 // == Flex Container ===========================================================
 $DEFAULT-FLEX-MODE: flex;
@@ -79,6 +98,11 @@ $DEFAULT-FLEX-MODE: flex;
 @mixin flex-container-alignX-center($mode: $DEFAULT-FLEX-MODE) {
   @include flex-container($mode);
   justify-content: center;
+}
+
+@mixin flex-container-alignX-fill($mode: $DEFAULT-FLEX-MODE) {
+  @include flex-container($mode);
+  justify-content: stretch;
 }
 
 @mixin flex-container-alignX-edge($mode: $DEFAULT-FLEX-MODE) {

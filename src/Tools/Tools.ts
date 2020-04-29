@@ -14,4 +14,12 @@ export function useObservable<T> (observable: Observable<T>) {
   return state;
 };
 
-export default useObservable
+
+// == Style ====================================================================
+type stylesT = {
+  readonly [key: string]: string;
+}
+
+export function stylesBind(styles: stylesT) {
+  return classNames.bind(styles);
+}
