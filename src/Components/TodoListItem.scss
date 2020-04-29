@@ -1,0 +1,82 @@
+@import '../Settings/Colors.scss';
+@import '../Settings/Layouts.scss';
+@import '../Tools/Tools.scss';
+
+.TodoListItem {
+  @include flex-container-start-left;
+  @include flex-container-alignX-edge;
+  @include flex-container-alignY-center;
+  cursor:  pointer;
+  padding: $default-padding + 0.2rem;
+  &:nth-child(even) {
+    background-color: $darkWhite;
+  }
+
+  svg {
+    visibility: hidden;
+  }
+  &:hover {
+    svg {
+      visibility: visible;
+    }
+  }
+
+  .remove {
+    svg {
+      font-size: 1.5rem;
+      color:     lightColor($red, 3);
+    }
+    &:hover {
+      svg {
+        color: lightColor($red, 10);
+      }
+    }
+  }
+
+  .checkbox {
+    @include flex-container-start-left;
+    @include flex-container-alignY-center;
+    @include flex-item-size-up(1);
+
+    svg {
+      font-size:  2rem;
+      visibility: visible;
+      color:      lightColor($lightGrey, 10);
+    }
+    .text {
+      margin-left: $default-margin;
+    }
+
+    &:hover {
+      svg {
+        color: lightColor($lightGrey, 12);
+      }
+      .text {
+        color: lightColor($lightx3Black, 5);
+      }
+    }
+
+
+    &.checked {
+      svg {
+        color: $primary-color;
+      }
+      .text {
+        color:           $lightGrey;
+        text-decoration: line-through;
+      }
+      &:hover {
+        svg {
+          color: lightColor($primary-color, 1.5);
+        }
+        .text {
+          color: lightColor($lightGrey, 3);
+        }
+      }
+    }
+  }
+
+  & + & {
+    border-top: 1px solid $darkx3White;
+  }
+}

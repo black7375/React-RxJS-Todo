@@ -1,0 +1,14 @@
+@import '../Settings/Colors.scss';
+@import '../Settings/Layouts.scss';
+@import '../Tools/Tools.scss';
+
+.TodoList {
+  height:        80vh;
+  overflow-y:    scroll;
+  border-radius: $default-round;
+
+  &Loading {
+    height:     100vh;
+    overflow-y: hidden;
+  }
+}

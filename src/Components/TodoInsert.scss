@@ -1,0 +1,43 @@
+@import '../Settings/Colors.scss';
+@import '../Settings/Fonts.scss';
+@import '../Settings/Layouts.scss';
+@import '../Tools/Tools.scss';
+
+.TodoInsert {
+  @include flex-container-start-left;
+  height:        3rem;
+  border:        2px solid $lightGrey;
+  border-radius: $default-round;
+  margin-bottom: 0.1rem;
+
+  input {
+    @include flex-item-size-up(1);
+    background:  none;
+    outline:     none;
+    border:      none;
+    margin-left: $default-margin;
+
+    &::placeholder {
+    }
+  }
+
+  button {
+    $padding:     $default-padding + 0.3rem;
+    $round-left:  1px;
+    $round-right: 7px;
+
+    font-size:        1.7rem;
+    color:            $white;
+    background-color: lightColor($lightGrey, 2);
+    cursor:           pointer;
+    outline:          none;
+    border:           none;
+    border-radius:    $round-left $round-right $round-right $round-left;
+    padding-left:     $padding +0.1rem;
+    padding-right:    $padding;
+
+    &:hover {
+      background-color: lightColor($lightGrey, 8.3);
+    }
+  }
+}

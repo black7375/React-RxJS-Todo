@@ -1,0 +1,29 @@
+@import '../Settings/Colors.scss';
+@import '../Settings/Fonts.scss';
+@import '../Settings/Layouts.scss';
+@import '../Tools/Tools.scss';
+
+.TodoTemplate {
+  @include flex-container-start-top;
+  @include flex-container-alignY-center;
+  @include font-legibility;
+  font-family:      $notoSans;
+  font-weight:      $medium;
+  height:           $full-height;
+  color:            $black;
+  background-color: $white;
+
+  .app-title {
+    @include flex-item-alignY-fill;
+    font-family: $notoSerif;
+    font-weight: $heavy;
+    font-size:   4rem;
+    text-align:  center;
+    padding:     $default-padding * 2;
+    max-height:  $half-height;
+  }
+  .content {
+    width:     40rem;
+    font-size: 1.2rem;
+  }
+}
