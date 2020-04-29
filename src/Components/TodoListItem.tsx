@@ -23,11 +23,11 @@ const TodoListItem = ({ todo, onRemove, onToggle }: TodoListItemProps) => {
   return (
     <div className="TodoListItem">
       <div className={cn('checkbox', { checked })} onClick={onToggleClick} >
-        {checked ? "체크 O" : "체크 X"}
+        {checked ? <IoMdCheckmarkCircleOutline /> : <IoIosRadioButtonOff /> }
         <div className="text">{text}</div>
       </div>
       <div className="remove" onClick={onRemoveClick} >
-        삭제
+        <BsTrash />
       </div>
     </div>
   );

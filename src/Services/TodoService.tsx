@@ -15,7 +15,7 @@ const largeInitItems = List((() => {
   for (let i = 0; i < largeItemSize; i++) {
     array.push(new TodoItem({
       id: i,
-      text: `할 일 ${i}`,
+      text: `Task ${i}`,
       checked: false
     }));
   }
