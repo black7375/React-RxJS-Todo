@@ -3,11 +3,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { scan, map, publishReplay, refCount } from 'rxjs/operators'
 import { TodoItem, TodoItemsT, TodoItemT } from '../Generic/TodoModel';
 
-// https://medium.com/@fahad19/using-rxjs-with-react-js-part-i-introduction-4d027ef55aa6
-// https://github.com/SiWonRyu/ReactWIthRxjs/blob/master/src/services/my-service.ts
-// https://github.com/MichalZalecki/connect-rxjs-to-react
-// https://github.com/RxJS-CN/react-rxjs-todos
-
 // == Large Size Sample ========================================================
 const largeItemSize = 2500;
 const largeInitItems = List((() => {
