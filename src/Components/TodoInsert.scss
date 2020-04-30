@@ -4,6 +4,7 @@
 @import '../Tools/Tools.scss';
 
 .TodoInsert {
+  @include container-all;
   @include flex-container-start-left;
   height:        3rem;
   border:        2px solid $lightGrey;
@@ -11,6 +12,7 @@
   margin-bottom: 0.1rem;
 
   input {
+    @include container-all;
     @include flex-item-size-up(1);
     background:  none;
     outline:     none;

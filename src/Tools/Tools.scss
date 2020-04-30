@@ -17,6 +17,19 @@
   font-variant-ligatures:    normal;
 }
 
+// ** Container ****************************************************************
+@mixin container() {
+  contain: content;
+}
+
+@mixin container-strict() {
+  contain: strict;
+}
+
+@mixin container-all() {
+  contain:strict style;
+}
+
 // ** Flex *********************************************************************
 // == Flex Container ===========================================================
 $DEFAULT-FLEX-MODE: flex;

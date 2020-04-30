@@ -14,6 +14,7 @@
   background-color: $white;
 
   .app-title {
+    @include container-all;
     @include flex-item-alignY-fill;
     font-family: $notoSerif;
     font-weight: $heavy;
@@ -23,6 +24,7 @@
     max-height:  $half-height;
   }
   .content {
+    @include container;
     width:     40rem;
     font-size: 1.2rem;
   }
