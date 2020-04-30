@@ -1,7 +1,10 @@
 import React from 'react';
+import { stylesBind } from '../Tools/Tools';
 import { TodoItemT, TodoItemsT } from '../Generic/TodoModel'
 import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoListItem';
-import './TodoList.scss'
+import styles from './TodoList.module.scss'
+
+const cx = stylesBind(styles);
 
 interface TodoListProps {
   todos:    TodoItemsT;
@@ -14,9 +17,9 @@ const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
                       ? todos.map((todo: TodoItemT) => (
                         <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
                       ))
-                      : (<div className="TodoListLoading"> Loading.. </div>);
+                      : (<div className={cx('TodoListLoading')}> Loading.. </div>);
   return (
-    <div className="TodoList">
+    <div className={cx('TodoList')}>
       {TodoListItems}
     </div>
   );

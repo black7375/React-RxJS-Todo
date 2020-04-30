@@ -1,7 +1,10 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { TodoItemT } from '../Generic/TodoModel';
 import { AiOutlinePlus } from 'react-icons/ai';
-import './TodoInsert.scss';
+import { stylesBind } from '../Tools/Tools';
+import { TodoItemT } from '../Generic/TodoModel';
+import styles from './TodoInsert.module.scss';
+
+const cx = stylesBind(styles);
 
 interface TodoInsertProps {
   onInsert: (text: TodoItemT['text']) => void;
@@ -28,7 +31,7 @@ const TodoInsert = ({ onInsert }: TodoInsertProps) => {
   );
 
   return (
-    <form className="TodoInsert" onSubmit={onSubmit} >
+    <form className={cx('TodoInsert')} onSubmit={onSubmit} >
       <input
         placeholder="Write Tasks!!"
         value={value}
