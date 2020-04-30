@@ -66,7 +66,7 @@ const TodoService = {
     nextId++;
   },
   removeItem: (id: TodoItemT['id']) => remove$.next(id),
-  toogleItem: (id: TodoItemT['id']) => toggle$.next(id)
+  toggleItem: (id: TodoItemT['id']) => toggle$.next(id)
 };
 
 export default TodoService;

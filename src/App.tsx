@@ -6,13 +6,12 @@ import TodoTemplate from './Layouts/TodoTemplate';
 import TodoInsert from './Components/TodoInsert';
 import TodoList from './Components/TodoList';
 
-// == Large Size Sample ========================================================
 function App() {
   const todos = useObservable(TodoService.todos$);
 
   const onInsert = useCallback((text: TodoItemT['text']) => { TodoService.addItem(text);  }, []);
   const onRemove = useCallback((id:   TodoItemT['id']  ) => { TodoService.removeItem(id); }, []);
-  const onToggle = useCallback((id:   TodoItemT['id']  ) => { TodoService.toogleItem(id); }, []);
+  const onToggle = useCallback((id:   TodoItemT['id']  ) => { TodoService.toggleItem(id); }, []);
 
   return (
     <TodoTemplate>
