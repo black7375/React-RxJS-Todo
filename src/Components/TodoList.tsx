@@ -13,11 +13,11 @@ interface TodoListProps {
 }
 
 const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
-  const TodoListItems = todos !== undefined
-                      ? todos.map((todo: TodoItemT) => (
-                        <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
-                      ))
-                      : (<div className={cx('TodoListLoading')}> Loading.. </div>);
+  const TodoListItems = todos.map((todo: TodoItemT) => (
+    <TodoListItem todo={todo} key={todo.id}
+                  onRemove={onRemove} onToggle={onToggle} />
+  ));
+
   return (
     <div className={cx('TodoList')}>
       {TodoListItems}
