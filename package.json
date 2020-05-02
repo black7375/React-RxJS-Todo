@@ -26,6 +26,7 @@
     "react-scripts": "3.4.1",
     "recyclerlistview": "^3.0.0",
     "rxjs": "^6.5.5",
+    "ts-object-utils": "^0.0.5",
     "typescript": "^3.8.3"
   },
   "scripts": {
