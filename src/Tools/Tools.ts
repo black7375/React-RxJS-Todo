@@ -3,13 +3,27 @@ import { Observable } from 'rxjs';
 import classNames from 'classnames/bind';
 
 // == RxJS =====================================================================
-export function useObservable<T> (observable: Observable<T>) {
-  const [state, setState] = useState<T>();
+export function useObservable<T>(
+  observable: Observable<T>
+  ) : T | undefined;
+export function useObservable<T, K = keyof T>(
+  observable: Observable<T>,
+  init?:      K,
+  callback?:  (state: T) => K
+): K;
+
+export function useObservable<T, K = keyof T> (
+  observable: Observable<T>,
+  init?:      K,
+  callback?:  (state: T) => K): T | K | undefined {
+  const [state, setState] = useState<T | K>(init!);
 
   useEffect(() => {
-    const sub = observable.subscribe(setState);
+    const sub = callback
+              ? observable.subscribe((data: K | any) => setState(callback(data)))
+              : observable.subscribe(setState);
     return () => sub.unsubscribe();
-  }, [observable]);
+  }, [observable, callback]);
 
   return state;
 };

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { RecyclerListView, LayoutProvider } from 'recyclerlistview/web';
 import { stylesBind } from '../Tools/Tools';
 import ListDataProvider from '../Tools/RecyclerPrivider';
-import { TodoItemT, TodoItemsT } from '../Generic/TodoModel'
+import { TodoItemT, TodoItemsT } from '../Generic/TodoModel';
+import TodoService from '../Services/TodoService';
 import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoListItem';
-import styles from './TodoList.module.scss'
+import styles from './TodoList.module.scss';
 
 /** Warning!!! *****************************************************************
  * It works when you run
@@ -26,10 +27,19 @@ const ListViewType = {
 
 const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
   const width = window.innerWidth;
-  const dataProviderRule = new ListDataProvider((r1: TodoItemT, r2: TodoItemT) => {
+
+  const renderData = new ListDataProvider((r1: TodoItemT, r2: TodoItemT) => {
     return r1 !== r2;
-  });
-  const dataProvider = dataProviderRule.cloneWithRows(todos);
+  }).cloneWithRows(todos);
+
+  const [dataProvider, setDataProvider] = useState(renderData);
+  useEffect(() => {
+    const sub = TodoService.todos$.subscribe((todos) =>
+      setDataProvider((dataProvider) => dataProvider.cloneWithRows(todos)));
+    return () => {
+      sub.unsubscribe()
+    };
+  }, []);
 
   const layoutProvider = new LayoutProvider(
     (index) => { return ListViewType.TODOLISTITEMS },
