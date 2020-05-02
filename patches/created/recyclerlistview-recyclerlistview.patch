@@ -1,0 +1,11 @@
+--- ../node_modules/recyclerlistview/dist/web/core/RecyclerListView.d.ts	2020-05-02 06:25:16.178000000 +0900
++++ ./recyclerlistview/RecyclerListView.d.ts	2020-05-02 12:42:43.838891106 +0900
+@@ -31,7 +31,7 @@
+ export interface RecyclerListViewProps {
+     layoutProvider: BaseLayoutProvider;
+     dataProvider: BaseDataProvider;
+-    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => JSX.Element | JSX.Element[] | null;
++    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => any | JSX.Element | JSX.Element[] | null;
+     contextProvider?: ContextProvider;
+     renderAheadOffset?: number;
+     isHorizontal?: boolean;

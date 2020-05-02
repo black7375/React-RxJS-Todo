@@ -9,9 +9,10 @@ import { List } from 'immutable'
  * Allows access to data and size. Clone with rows creates a new data provider and let listview know where to calculate row layout from.
  *
  * Customized: https://github.com/Flipkart/recyclerlistview/blob/master/src/core/dependencies/DataProvider.ts
- * It works when you fix recyclerlistview/dist/web/core/dependencies/DataProvider.d.ts
- * getAllData(): any[] => getAllData(): any[] | any;
- * cloneWithRows(newData: any[], ... => cloneWithRows(newData: any[] | any, ...
+ *
+ * Warning!!!
+ * It works when you run
+ * bash ../../patches/apply_patch.sh
  * */
 
 export abstract class GenericDataProvider<T, K = keyof T> extends BaseDataProvider{

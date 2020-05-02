@@ -7,13 +7,8 @@ import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoList
 import styles from './TodoList.module.scss'
 
 /** Warning!!! *****************************************************************
- * It works when you
- * node_modules/recyclerlistview/dist/web/core/dependencies/DataProvider.d.ts
- * getAllData(): any[]               => getAllData(): any[] | any;
- * cloneWithRows(newData: any[], ... => cloneWithRows(newData: any[] | any, ...
- *
- * node_modules/recylerlistview/dist/web/core/RecyclerListView.d.ts
- * rowRenderer: ... JSX.Element | JSX.Element[] | null; => any | JSX.Element | JSX.Element[] | null;
+ * It works when you run
+ * bash ../../patches/apply_patch.sh
  */
 
 const cx = stylesBind(styles);

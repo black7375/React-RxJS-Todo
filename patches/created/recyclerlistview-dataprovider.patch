@@ -1,0 +1,17 @@
+--- ../node_modules/recyclerlistview/dist/web/core/dependencies/DataProvider.d.ts	2020-05-02 06:25:16.178000000 +0900
++++ ./recyclerlistview/dependencies/DataProvider.d.ts	2020-05-02 12:09:06.000000000 +0900
+@@ -13,12 +13,12 @@
+     constructor(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string);
+     abstract newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string): BaseDataProvider;
+     getDataForIndex(index: number): any;
+-    getAllData(): any[];
++    getAllData(): any | any[];
+     getSize(): number;
+     hasStableIds(): boolean;
+     requiresDataChangeHandling(): boolean;
+     getFirstIndexToProcessInternal(): number;
+-    cloneWithRows(newData: any[], firstModifiedIndex?: number): DataProvider;
++    cloneWithRows(newData: any | any[], firstModifiedIndex?: number): DataProvider;
+ }
+ export default class DataProvider extends BaseDataProvider {
+     newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: ((index: number) => string) | undefined): BaseDataProvider;
