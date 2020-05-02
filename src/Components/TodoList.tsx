@@ -19,12 +19,9 @@ const ListViewType = {
 
 
 const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
-  const renderData = todos.map((todo: TodoItemT) => (
-    <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
-  )).toArray();
-
-  let width = window.innerWidth;
-  let dataProviderRule = new DataProvider((r1, r2) => { return r1 !== r2; });
+  const width = window.innerWidth;
+  const dataProviderRule = new DataProvider((r1, r2) => { return r1 !== r2; });
+  const renderData = todos.toArray();
 
   const [dataProvider, setDataProvider] = useState(
     dataProviderRule.cloneWithRows(renderData)
@@ -35,7 +32,7 @@ const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
     (type, dim) => {
       switch(type) {
         case ListViewType.TODOLISTITEMS: {
-          dim.width = 630; // 630.4 584
+          dim.width  = width; // 630.4 584
           dim.height = 55; // 55.2  54.4
           break;
         }
@@ -46,10 +43,12 @@ const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
     }
   );
 
-  const rowRenderer = (viewType: React.ReactText, todos: JSX.Element[]) => {
+  const rowRenderer = (viewType: React.ReactText, todos: TodoItemT[]) => {
     switch (viewType) {
       case ListViewType.TODOLISTITEMS: {
-        return todos;
+        return todos.map((todo: TodoItemT) => (
+          <TodoListItem todo={todo} key={todo.id} onRemove={onRemove} onToggle={onToggle} />
+        ));
       }
       default:
         return null;
