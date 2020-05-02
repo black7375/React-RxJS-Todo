@@ -7,8 +7,8 @@ import TodoService from '../Services/TodoService';
 import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoListItem';
 import styles from './TodoList.module.scss';
 
-/** Warning!!! *****************************************************************
- * It works when you run
+/** Notice *********************************************************************
+ * If it doesn't work, run the following command.
  * bash ../../patches/apply_patch.sh
  */
 

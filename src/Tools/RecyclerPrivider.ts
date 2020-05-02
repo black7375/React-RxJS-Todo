@@ -1,7 +1,7 @@
-import { BaseDataProvider } from 'recyclerlistview/dist/web/core/dependencies/DataProvider'
-import { DataProvider } from 'recyclerlistview/web'
+import { BaseDataProvider } from 'recyclerlistview/dist/web/core/dependencies/DataProvider';
+import { DataProvider } from 'recyclerlistview/web';
 import { ObjectUtil } from "ts-object-utils";
-import { List } from 'immutable'
+import { List } from 'immutable';
 
 // == RecyclerListView DataProvinder ===========================================
 /***
@@ -10,8 +10,8 @@ import { List } from 'immutable'
  *
  * Customized: https://github.com/Flipkart/recyclerlistview/blob/master/src/core/dependencies/DataProvider.ts
  *
- * Warning!!!
- * It works when you run
+ * Notice!!!
+ * If it doesn't work, run the following command.
  * bash ../../patches/apply_patch.sh
  * */
 

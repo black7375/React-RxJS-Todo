@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { scan, map, publishReplay, refCount } from 'rxjs/operators'
+import { scan, map, publishReplay, refCount } from 'rxjs/operators';
 import { TodoItem, TodoItemsT, TodoItemT } from '../Generic/TodoModel';
 
 // == Large Size Sample ========================================================
