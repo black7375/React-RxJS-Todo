@@ -19,16 +19,16 @@ interface TodoListItemProps {
 
 const TodoListItem = ({ todo, onRemove, onToggle }: TodoListItemProps) => {
   const { id, text, checked } = todo;
-  const onRemoveClick = () => { onRemove(id); };
-  const onToggleClick = () => { onToggle(id); };
+  const onRemoveDown = () => { onRemove(id); };
+  const onToggleDown = () => { onToggle(id); };
 
   return (
     <div className={cx('TodoListItem')}>
-      <div className={cx('checkbox', { checked })} onClick={onToggleClick} >
+      <div className={cx('checkbox', { checked })} onPointerDown={onToggleDown} >
         {checked ? <IoMdCheckmarkCircleOutline /> : <IoIosRadioButtonOff /> }
         <div className={cx('text')}>{text}</div>
       </div>
-      <div className={cx('remove')} onClick={onRemoveClick} >
+      <div className={cx('remove')} onPointerDown={onRemoveDown} >
         <BsTrash />
       </div>
     </div>
