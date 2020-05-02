@@ -1,13 +1,14 @@
 #!/bin/bash
+DIR=$( cd "$(dirname "$0")" ; pwd )
 
 # Source Patch List
-source ./patch_list.sh
+source ${DIR}/patch_list.sh
 
 # apply patch
 apply_patch() {
   local target=$1
   local patch=$2
-  patch --forward $target < $patch
+  patch --forward ${DIR}/${target} < ${DIR}/${patch}
 }
 
 for (( i = 0; i<${#PATCH_PATH[@]}; i++)); do
