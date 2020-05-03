@@ -1,11 +1,19 @@
---- ../node_modules/recyclerlistview/dist/web/core/RecyclerListView.d.ts	2020-05-02 06:25:16.178000000 +0900
-+++ ./recyclerlistview/RecyclerListView.d.ts	2020-05-02 12:42:43.838891106 +0900
-@@ -31,7 +31,7 @@
+--- "/home/black7375/\353\254\270\354\204\234/react/React-RxJS-Todo/patches/../node_modules/recyclerlistview/dist/web/core/RecyclerListView.d.ts"	2020-05-04 07:51:42.540000000 +0900
++++ "/home/black7375/\353\254\270\354\204\234/react/React-RxJS-Todo/patches/./recyclerlistview/RecyclerListView.d.ts"	2020-05-04 08:06:34.000000000 +0900
+@@ -9,6 +9,7 @@
+ import ItemAnimator from "./ItemAnimator";
+ import { DebugHandlers } from "..";
+ import { ComponentCompat } from "../utils/ComponentCompat";
++import { List } from '../../../../immutable/dist/immutable';
+ /***
+  * This is the main component, please refer to samples to understand how to use.
+  * For advanced usage check out prop descriptions below.
+@@ -31,7 +32,7 @@
  export interface RecyclerListViewProps {
      layoutProvider: BaseLayoutProvider;
      dataProvider: BaseDataProvider;
 -    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => JSX.Element | JSX.Element[] | null;
-+    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => any | JSX.Element | JSX.Element[] | null;
++    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => JSX.Element | JSX.Element[] | List<JSX.Element> | null;
      contextProvider?: ContextProvider;
      renderAheadOffset?: number;
      isHorizontal?: boolean;

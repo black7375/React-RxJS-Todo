@@ -9,6 +9,7 @@ import VirtualRenderer, { RenderStack } from "./VirtualRenderer";
 import ItemAnimator from "./ItemAnimator";
 import { DebugHandlers } from "..";
 import { ComponentCompat } from "../utils/ComponentCompat";
+import { List } from '../../../../immutable/dist/immutable';
 /***
  * This is the main component, please refer to samples to understand how to use.
  * For advanced usage check out prop descriptions below.
@@ -31,7 +32,7 @@ export interface OnRecreateParams {
 export interface RecyclerListViewProps {
     layoutProvider: BaseLayoutProvider;
     dataProvider: BaseDataProvider;
-    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => any | JSX.Element | JSX.Element[] | null;
+    rowRenderer: (type: string | number, data: any, index: number, extendedState?: object) => JSX.Element | JSX.Element[] | List<JSX.Element> | null;
     contextProvider?: ContextProvider;
     renderAheadOffset?: number;
     isHorizontal?: boolean;

@@ -1,3 +1,4 @@
+import { List } from '../../../../immutable/dist/immutable';
 /***
  * You can create a new instance or inherit and override default methods
  * Allows access to data and size. Clone with rows creates a new data provider and let listview know where to calculate row layout from.
@@ -13,12 +14,12 @@ export declare abstract class BaseDataProvider {
     constructor(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string);
     abstract newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string): BaseDataProvider;
     getDataForIndex(index: number): any;
-    getAllData(): any | any[];
+    getAllData(): any[] | List<T>;
     getSize(): number;
     hasStableIds(): boolean;
     requiresDataChangeHandling(): boolean;
     getFirstIndexToProcessInternal(): number;
-    cloneWithRows(newData: any | any[], firstModifiedIndex?: number): DataProvider;
+    cloneWithRows(newData: any[] | List<T>, firstModifiedIndex?: number): DataProvider;
 }
 export default class DataProvider extends BaseDataProvider {
     newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: ((index: number) => string) | undefined): BaseDataProvider;

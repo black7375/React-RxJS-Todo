@@ -1,17 +1,22 @@
---- ../node_modules/recyclerlistview/dist/web/core/dependencies/DataProvider.d.ts	2020-05-02 06:25:16.178000000 +0900
-+++ ./recyclerlistview/dependencies/DataProvider.d.ts	2020-05-02 12:09:06.000000000 +0900
-@@ -13,12 +13,12 @@
+--- "/home/black7375/\353\254\270\354\204\234/react/React-RxJS-Todo/patches/../node_modules/recyclerlistview/dist/web/core/dependencies/DataProvider.d.ts"	2020-05-04 07:51:42.540000000 +0900
++++ "/home/black7375/\353\254\270\354\204\234/react/React-RxJS-Todo/patches/./recyclerlistview/dependencies/DataProvider.d.ts"	2020-05-04 08:13:05.000000000 +0900
+@@ -1,3 +1,4 @@
++import { List } from '../../../../immutable/dist/immutable';
+ /***
+  * You can create a new instance or inherit and override default methods
+  * Allows access to data and size. Clone with rows creates a new data provider and let listview know where to calculate row layout from.
+@@ -13,12 +14,12 @@
      constructor(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string);
      abstract newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: (index: number) => string): BaseDataProvider;
      getDataForIndex(index: number): any;
 -    getAllData(): any[];
-+    getAllData(): any | any[];
++    getAllData(): any[] | List<T>;
      getSize(): number;
      hasStableIds(): boolean;
      requiresDataChangeHandling(): boolean;
      getFirstIndexToProcessInternal(): number;
 -    cloneWithRows(newData: any[], firstModifiedIndex?: number): DataProvider;
-+    cloneWithRows(newData: any | any[], firstModifiedIndex?: number): DataProvider;
++    cloneWithRows(newData: any[] | List<T>, firstModifiedIndex?: number): DataProvider;
  }
  export default class DataProvider extends BaseDataProvider {
      newInstance(rowHasChanged: (r1: any, r2: any) => boolean, getStableId?: ((index: number) => string) | undefined): BaseDataProvider;
