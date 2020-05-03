@@ -55,6 +55,7 @@ toggle$.pipe(
 
 // == Interface ================================================================
 const TodoService = {
+  initData: largeInitItems,
   todos$: todos$,
 
   onInsert: (text: TodoItemT['text']) => {
