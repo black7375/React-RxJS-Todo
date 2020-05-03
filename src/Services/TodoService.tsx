@@ -20,7 +20,7 @@ const largeInitItems = List((() => {
 
 // == Core Events ==============================================================
 const update$ = new BehaviorSubject((todos: TodoItemsT) => todos);
-const create$ = new Subject<TodoItemT>();
+const insert$ = new Subject<TodoItemT>();
 const remove$ = new Subject<TodoItemT['id']>();
 const toggle$ = new Subject<TodoItemT['id']>();
 
@@ -37,7 +37,7 @@ const todos$ = update$.pipe(
 
 
 // == Events Implementation ====================================================
-create$.pipe(
+insert$.pipe(
   map((todo) => (todos: TodoItemsT) => todos.push(todo))
 ).subscribe(update$);
 
@@ -57,16 +57,16 @@ toggle$.pipe(
 const TodoService = {
   todos$: todos$,
 
-  addItem: (text: TodoItemT['text']) => {
-    create$.next(new TodoItem({
+  onInsert: (text: TodoItemT['text']) => {
+    insert$.next(new TodoItem({
       id:      nextId,
       text:    text,
       checked: false
     }));
     nextId++;
   },
-  removeItem: (id: TodoItemT['id']) => remove$.next(id),
-  toggleItem: (id: TodoItemT['id']) => toggle$.next(id)
+  onRemove: (id: TodoItemT['id']) => remove$.next(id),
+  onToggle: (id: TodoItemT['id']) => toggle$.next(id)
 };
 
 export default TodoService;

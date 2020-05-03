@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { IoMdCheckmarkCircleOutline, IoIosRadioButtonOff } from 'react-icons/io';
 import { BsTrash } from 'react-icons/bs';
 import { stylesBind } from '../Tools/Tools';
 import { TodoItemT } from '../Generic/TodoModel';
+import TodoService from '../Services/TodoService';
 import styles from './TodoListItem.module.scss';
 
 const cx = stylesBind(styles);
@@ -13,14 +14,12 @@ export type ItemToggleFT = (id: TodoItemT['id']) => void;
 interface TodoListItemProps {
   todo: TodoItemT;
   key: TodoItemT['id'];
-  onRemove: ItemRemoveFT;
-  onToggle: ItemToggleFT;
 }
 
-const TodoListItem = ({ todo, onRemove, onToggle }: TodoListItemProps) => {
+const TodoListItem = ({ todo }: TodoListItemProps) => {
   const { id, text, checked } = todo;
-  const onRemoveDown = () => { onRemove(id); };
-  const onToggleDown = () => { onToggle(id); };
+  const onRemoveDown = useCallback(() => TodoService.onRemove(id), []);
+  const onToggleDown = useCallback(() => TodoService.onToggle(id), []);
 
   return (
     <div className={cx('TodoListItem')}>

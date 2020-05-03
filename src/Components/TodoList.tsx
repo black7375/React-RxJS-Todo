@@ -16,8 +16,6 @@ const cx = stylesBind(styles);
 
 interface TodoListProps {
   todos:    TodoItemsT;
-  onRemove: ItemRemoveFT;
-  onToggle: ItemToggleFT;
 }
 
 const ListViewType = {
@@ -25,7 +23,7 @@ const ListViewType = {
 }
 
 
-const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
+const TodoList = ({ todos }: TodoListProps) => {
   const width = window.innerWidth;
 
   const renderData = new ListDataProvider((r1: TodoItemT, r2: TodoItemT) => {
@@ -60,8 +58,7 @@ const TodoList = ({ todos, onRemove, onToggle }: TodoListProps) => {
   const rowRenderer = (viewType: React.ReactText, todo: TodoItemT) => {
     switch (viewType) {
       case ListViewType.TODOLISTITEMS: {
-        return (<TodoListItem todo={todo} key={todo.id}
-                              onRemove={onRemove} onToggle={onToggle} />);
+        return (<TodoListItem todo={todo} key={todo.id} />);
       }
       default:
         return null;
