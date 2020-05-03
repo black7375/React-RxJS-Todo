@@ -18,8 +18,8 @@ interface TodoListItemProps {
 
 const TodoListItem = ({ todo }: TodoListItemProps) => {
   const { id, text, checked } = todo;
-  const onRemoveDown = useCallback(() => TodoService.onRemove(id), []);
-  const onToggleDown = useCallback(() => TodoService.onToggle(id), []);
+  const onRemoveDown = useCallback(() => TodoService.onRemove(id), [id]);
+  const onToggleDown = useCallback(() => TodoService.onToggle(id), [id]);
 
   return (
     <div className={cx('TodoListItem')}>
