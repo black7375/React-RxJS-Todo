@@ -69,8 +69,8 @@ export abstract class GenericDataProvider<T, K = keyof T> extends BaseDataProvid
 // == RecyclerListView Dataprovider with IMMUTABLE.JS ==========================
 export abstract class ListBaseDataProvider<T> extends GenericDataProvider<T, List<T>> {
   public abstract newInstance(
-    rowHasChanged: (r1: T, r2: T) => boolean,
-    getStableId?:  (index: number)     => string  ): ListBaseDataProvider<T>;
+    rowHasChanged: (r1: T, r2: T)  => boolean,
+    getStableId?:  (index: number) => string  ): ListBaseDataProvider<T>;
 
   public getDataForIndex(index: number): T | undefined {
     return this.m_data.get(index);

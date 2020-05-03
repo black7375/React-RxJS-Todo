@@ -36,7 +36,7 @@ const todos$ = update$.pipe(
 );
 
 
-// == Events Implmentation =====================================================
+// == Events Implementation ====================================================
 create$.pipe(
   map((todo) => (todos: TodoItemsT) => todos.push(todo))
 ).subscribe(update$);

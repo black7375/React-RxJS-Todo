@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useObservable } from './Tools/Tools';
-import { TodoItemT } from './Generic/TodoModel';
 import { withAsyncHOC } from './Generic/HOC';
 import TodoService from './Services/TodoService';
 import TodoTemplate from './Layouts/TodoTemplate';
@@ -16,9 +15,9 @@ function App() {
   const todos = useObservable(TodoService.todos$);
   const AsyncTodoList = withAsyncHOC(TodoList, todos);
 
-  const onInsert = useCallback((text: TodoItemT['text']) => { TodoService.addItem(text);  }, []);
-  const onRemove = useCallback((id:   TodoItemT['id']  ) => { TodoService.removeItem(id); }, []);
-  const onToggle = useCallback((id:   TodoItemT['id']  ) => { TodoService.toggleItem(id); }, []);
+  const onInsert = useCallback(TodoService.addItem,    []);
+  const onRemove = useCallback(TodoService.removeItem, []);
+  const onToggle = useCallback(TodoService.toggleItem, []);
 
   return (
     <TodoTemplate>
