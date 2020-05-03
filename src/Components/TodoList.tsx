@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RecyclerListView, LayoutProvider } from 'recyclerlistview/web';
 import { stylesBind } from '../Tools/Tools';
-import ListDataProvider from '../Tools/RecyclerPrivider';
+import ListDataProvider from '../Tools/RecyclerProvider';
 import { TodoItemT, TodoItemsT } from '../Generic/TodoModel';
 import TodoService from '../Services/TodoService';
 import TodoListItem, { ItemRemoveFT, ItemToggleFT } from '../Components/TodoListItem';
