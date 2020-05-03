@@ -27,11 +27,11 @@ const TodoList = () => {
   const [dataProvider, setDataProvider] = useState(renderData);
   useEffect(() => {
     const sub = TodoService.todos$.subscribe((todos) => {
-      setDataProvider(dataProvider.cloneWithRows(todos));
+      setDataProvider((dataProvider) => dataProvider.cloneWithRows(todos));
       }
     );
     return () => { sub.unsubscribe(); };
-  }, [TodoService.todos$]);
+  }, []);
 
   const layoutProvider = new LayoutProvider(
     (index) => { return ListViewType.TODOLISTITEMS },
