@@ -8,9 +8,6 @@ import styles from './TodoListItem.module.scss';
 
 const cx = stylesBind(styles);
 
-export type ItemRemoveFT = (id: TodoItemT['id']) => void;
-export type ItemToggleFT = (id: TodoItemT['id']) => void;
-
 interface TodoListItemProps {
   todo: TodoItemT;
   key: TodoItemT['id'];

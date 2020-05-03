@@ -89,7 +89,7 @@ export abstract class ListBaseDataProvider<T> extends GenericDataProvider<T, Lis
     } else {
       const sizeData = this.m_data.setSize(newSize);
       return (sizeData as List<T>)
-        .findIndex((value, index) => this.rowHasChanged(value, newData.get(index)));
+        .findIndex((value, index) => this.rowHasChanged(value, newData.get(index )));
     }
   }
 
