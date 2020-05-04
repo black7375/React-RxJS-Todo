@@ -10,7 +10,7 @@ const cx = stylesBind(styles);
 
 interface TodoListItemProps {
   todo: TodoItemT;
-  key: TodoItemT['id'];
+  key:  TodoItemT['id'];
 }
 
 const TodoListItem = ({ todo }: TodoListItemProps) => {

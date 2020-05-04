@@ -33,7 +33,7 @@ const TodoList = () => {
     return () => { sub.unsubscribe(); };
   }, []);
 
-  const layoutProvider = new LayoutProvider(
+  const [layoutProvider, setLayoutProvider] = useState(new LayoutProvider(
     (index) => { return ListViewType.TODOLISTITEMS },
     (type, dim) => {
       switch(type) {
@@ -47,7 +47,7 @@ const TodoList = () => {
           dim.height = 0;
       }
     }
-  );
+  ));
 
   const rowRenderer = (viewType: React.ReactText, todo: TodoItemT) => {
     switch (viewType) {
