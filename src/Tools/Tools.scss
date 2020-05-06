@@ -1,12 +1,13 @@
-// ** Color ********************************************************************
+// ** Basics *******************************************************************
+// == Color ====================================================================
 @function lightColor($color, $amount: 0) {
-  @return lighten($color, 2 * $amount);
+  @return lighten($color, 2 = $amount);
 }
 @function darkColor($color, $amount: 0) {
-  @return darken($color, 2 * $amount);
+  @return darken($color, 2 = $amount);
 }
 
-// ** Font *********************************************************************
+// == Font =====================================================================
 @mixin font-legibility() {
   -webkit-text-stroke-width: 0.04px;
   -webkit-font-smoothing:    antialiased;
@@ -15,6 +16,29 @@
   text-rendering:            geometricPrecision;
   font-kerning:              normal;
   font-variant-ligatures:    normal;
+}
+
+// ** Responsive ***************************************************************
+// == Size =====================================================================
+// https://gist.github.com/eduardoboucas/84144cd85cbd2ad4db1ca8b902585ca0
+@function im-to-em($breakpoints, $base-value: 16px) {
+  $new-breakpoints: ();
+
+  @each $name, $value in $breakpoints {
+    $em-value: ($value / $base-value) * 1em;
+    $new-breakpoints: map-merge($new-breakpoints, ($name: $em-value));
+  }
+
+  @return $new-breakpoints;
+}
+
+// https://css-tricks.com/books/fundamental-css-tactics/scale-typography-screen-size/
+@function fluid-size($min-size, $max-size, $min-vw, $max-vw, $reverse: false) {
+  $size-differ: $max-size - $min-size;
+  $vw-differ: $max-vw - $min-vw;
+  $size-rate: (100vw - $min-vw) / $vw-differ;
+  @if
+  @return calc($min-size + (($size-differ) * $size-rate));
 }
 
 // ** Container ****************************************************************
