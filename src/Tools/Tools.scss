@@ -18,6 +18,113 @@
   font-variant-ligatures:    normal;
 }
 
+// == Unit =====================================================================
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// https://stackoverflow.com/questions/47630616/scss-arithmetic-operation-with-string
+@function to-number($value) {
+  @if type-of($value) == 'number' {
+    @return $value;
+  } @else if type-of($value) != 'string' {
+    @error 'Value for `to-number` should be a number or a string.';
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: str-slice($value, 1, 1) == '-';
+  $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+
+  @for $i from if($minus, 2, 1) through str-length($value) {
+    $character: str-slice($value, $i, $i);
+
+    @if (index(map-keys($numbers), $character) or $character == '.') {
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map-get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map-get($numbers, $character) / $digits;
+      }
+    }
+  }
+
+  @return if($minus, -$result, $result);;
+}
+
+@function to-unit($value) {
+  @if type-of($value) != 'string' {
+    @error 'Value for `to-unit` should be a string.';
+  }
+
+  $units: ('px': 1px, 'cm': 1cm, 'mm': 1mm, '%': 1%, 'ch': 1ch, 'pc': 1pc, 'in': 1in, 'em': 1em, 'rem': 1rem, 'pt': 1pt, 'ex': 1ex, 'vw': 1vw, 'vh': 1vh, 'vmin': 1vmin, 'vmax': 1vmax);
+  $parsed-unit: false;
+
+  @each $unit in $units {
+    // str-index - find substring in a string
+    // 'px' in '10px' for example
+
+    // $unit is a pair of ['px': 1px] (item in $units)
+    // nth(['px': 1px], 1) returns 'px'
+    // nth(['px': 1px], 2) returns 1px
+
+    @if (str-index($value, nth($unit, 1))) {
+      $parsed-unit: nth($unit, 2);
+    }
+  }
+
+  @if (not $parsed-unit) {
+    @error 'Invalid unit `#{$value}`.';
+  }
+
+  @return $parsed-unit;
+}
+
+// https://www.sitepoint.com/understanding-sass-units/
+@function convert-unit($value, $unit) {
+  $units: (
+    'px': 0px,
+    'cm': 0cm,
+    'mm': 0mm,
+    '%': 0%,
+    'ch': 0ch,
+    'in': 0in,
+    'em': 0em,
+    'rem': 0rem,
+    'pt': 0pt,
+    'pc': 0pc,
+    'ex': 0ex,
+    'vw': 0vw,
+    'vh': 0vh,
+    'vmin': 0vmin,
+    'vmax': 0vmax,
+    'deg': 0deg,
+    'turn': 0turn,
+    'rad': 0rad,
+    'grad': 0grad,
+    's': 0s,
+    'ms': 0ms,
+    'Hz': 0Hz,
+    'kHz': 0kHz,
+    'dppx': 0dppx,
+    'dpcm': 0dpcm,
+    'dpi': 0dpi,
+  );
+
+  @if map-has-key($units, $unit) {
+    @return map-get($units, $unit) + $value;
+  }
+
+  @error "Unknown unit `#{$unit}`.";
+}
+
 // ** Responsive ***************************************************************
 // == Size =====================================================================
 // https://gist.github.com/eduardoboucas/84144cd85cbd2ad4db1ca8b902585ca0
