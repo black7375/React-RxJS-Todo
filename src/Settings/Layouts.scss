@@ -27,7 +27,7 @@ $tablet-height: 1024px;
 $phone-width:  480px;
 $phone-height: 854px;
 
-$breakpoints: ( // px
+$breakpoints: (        // px
   phone:        #{$phone-width},
   tablet:       #{$tablet-width},
   laptop:       #{$laptop-width},
@@ -43,7 +43,7 @@ $breakpoints-height: ( // px
   high-desktop: #{$high-desktop-height}
 );
 
-$screensizes: ( // inch
+$screen-sizes: (       // inch
   phone:        5,
   tablet:       10.2,
   laptop:       14,
@@ -51,7 +51,7 @@ $screensizes: ( // inch
   high-desktop: 27
 );
 
-$screendistance: ( // 10cm
+$screen-distances: (   // 10cm
   phone:        3,
   tablet:       4,
   laptop:       5,
