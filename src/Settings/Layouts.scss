@@ -27,12 +27,36 @@ $tablet-height: 1024px;
 $phone-width:  480px;
 $phone-height: 854px;
 
-$breakpoints: (
+$breakpoints: ( // px
   phone:        #{$phone-width},
   tablet:       #{$tablet-width},
   laptop:       #{$laptop-width},
   desktop:      #{$desktop-width},
-  high-desktop: #{$hight-desktop-width}
+  high-desktop: #{$high-desktop-width}
+);
+
+$breakpoints-height: ( // px
+  phone:        #{$phone-height},
+  tablet:       #{$tablet-height},
+  laptop:       #{$laptop-height},
+  desktop:      #{$desktop-height},
+  high-desktop: #{$high-desktop-height}
+);
+
+$screensizes: ( // inch
+  phone:        5,
+  tablet:       10.2,
+  laptop:       14,
+  desktop:      24,
+  high-desktop: 27
+);
+
+$screendistance: ( // 10cm
+  phone:        3,
+  tablet:       4,
+  laptop:       5,
+  desktop:      6,
+  high-desktop: 6
 );
 
 // Alias
