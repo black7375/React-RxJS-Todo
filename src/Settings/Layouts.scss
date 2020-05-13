@@ -12,20 +12,20 @@ $default-margin:  0.5rem;
 $default-round: 10px;
 
 // ** Break Point **************************************************************
-$high-desktop-width:  2560;
-$high-desktop-height: 1440;
+$high-desktop-width:  2560px;
+$high-desktop-height: 1440px;
 
-$desktop-width:  1920;
-$desktop-height: 1080;
+$desktop-width:  1920px;
+$desktop-height: 1080px;
 
-$laptop-width:  1280;
-$laptop-height: 720;
+$laptop-width:  1280px;
+$laptop-height: 720px;
 
-$tablet-width:  768;
-$tablet-height: 1024;
+$tablet-width:  768px;
+$tablet-height: 1024px;
 
-$phone-width:  480;
-$phone-height: 854;
+$phone-width:  480px;
+$phone-height: 854px;
 
 $breakpoints: (
   phone:        #{$phone-width},

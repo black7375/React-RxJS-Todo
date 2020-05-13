@@ -35,14 +35,41 @@
 // https://www.madebymike.com.au/writing/fluid-type-calc-examples/
 @function fluid-size($start-size, $end-size, $min-screen,  $max-screen) {
   $rate: ($end-size - $start-size) / ($max-screen - $min-screen);
-  basic-size: $start-size - $rate * $min-screen;
+  $basic-size: $start-size - $rate * $min-screen;
 
   $sign: "+";
-  @if (basic-size < 0) {
+  @if ($basic-size < 0) {
     $sign: "-";
-    basic-size: abs(basic-size);
+    $basic-size: abs($basic-size);
   }
-  @return calc(#{$rate*100}vw #{$sign} #{basic-size});
+  @return calc(#{$rate*100}vw #{$sign} #{$basic-size});
+}
+
+@mixin fluid-media($property,
+  $default-size, $phone-size,   $tablet-size,
+  $laptop-size,  $desktop-size, $high-dekstop-size) {
+
+  #{$property}:   fluid-size($default-size, $phone-size,        0px,            $phone-width       );
+
+  @include media(">=phone") {
+    #{$property}: fluid-size($phone-size,   $tablet-size,       $phone-width,   $tablet-width      );
+  }
+  @include media(">=tablet") {
+    #{$property}: fluid-size($tablet-size,  $laptop-size,       $tablet-width,  $laptop-size       );
+  }
+  @include media(">=laptop") {
+    #{$property}: fluid-size($laptop-size,  $desktop-size,      $laptop-width,  $desktop-width     );
+  }
+  @include media(">=desktop") {
+    #{$property}: fluid-size($desktop-size, $high-desktop-size, $desktop-width, $high-desktop-width);
+  }
+}
+
+@mixin fluid-font-size($default-size, $phone-size,   $tablet-size,
+                       $laptop-size,  $desktop-size, $high-dekstop-size) {
+  @include fluid-media(font-size,
+  $default-size, $phone-size,   $tablet-size,
+  $laptop-size,  $desktop-size, $high-dekstop-size);
 }
 
 // ** Container ****************************************************************
