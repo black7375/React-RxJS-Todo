@@ -106,6 +106,46 @@
   @error "Unknown unit `#{$unit}`.";
 }
 
+@function convert-unit-list($list, $unit) {
+  $new-list: ();
+
+  @each $value in $list {
+    $converted: convert-unit($value, $unit);
+    $new-list: append($new-list, $value);
+  }
+  @return $new-list;
+}
+
+@function convert-unit-map($map, $unit) {
+  $new-map: ();
+
+  @each $key, $value in $list {
+    $converted: convert-unit($value, $unit);
+    $new-map: map-merge($new-map, ($key: $value));
+  }
+  @return $new-map;
+}
+
+// == Utils ====================================================================
+@function range($values) {
+  $range-list: ();
+
+  @for $i from 1 through length($values) {
+    $range-list: append($range-list, $i);
+  }
+  @return $range-list;
+}
+
+@fucntion to-map($keys, $values) {
+  $map: ();
+
+  @each $i in range($keys) {
+    $map-value: (nth($keys, $i): nth($values, $i));
+    $map: map-merge($map, $map-value);
+  }
+  @return $map;
+}
+
 // ** Responsive ***************************************************************
 // == Size =====================================================================
 @function zip-responsive() {
@@ -166,9 +206,9 @@
 @function im-to-em($breakpoints, $base-value: 16px) {
   $new-breakpoints: ();
 
-  @each $name, $value in $breakpoints {
+  @each $key, $value in $breakpoints {
     $em-value: ($value / $base-value) * 1em;
-    $new-breakpoints: map-merge($new-breakpoints, ($name: $em-value));
+    $new-breakpoints: map-merge($new-breakpoints, ($key: $em-value));
   }
 
   @return $new-breakpoints;
@@ -188,8 +228,14 @@
 }
 
 @mixin fluid-media($property,
-  $default-size, $phone-size,   $tablet-size,
-  $laptop-size,  $desktop-size, $high-desktop-size) {
+                   $default-size, $phone-size,   $tablet-size,
+                   $laptop-size,  $desktop-size, $high-desktop-size) {
+  $default-size:      convert-unit($default-size,      'px');
+  $phone-size:        convert-unit($phone-size,        'px');
+  $tablet-size:       convert-unit($tablet-size,       'px');
+  $laptop-size:       convert-unit($laptop-size,       'px');
+  $desktop-size:      convert-unit($desktop-size,      'px');
+  $high-desktop-size: convert-unit($high-desktop-size, 'px');
 
   #{$property}:   fluid-size($default-size, $phone-size,        0px,            $phone-width       );
 
