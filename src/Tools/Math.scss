@@ -1,0 +1,127 @@
+/*
+ * Use this or mathsass(https://github.com/terkel/mathsass)
+ */
+
+// ** Basic ********************************************************************
+// https://gist.github.com/ryanjafari/bf752b6ef52726352239
+@function sqrt($square, $tolerance: .001, $estimate: $square/2) {
+
+  @if abs($square - $estimate*$estimate) < $tolerance {
+    @return $estimate;
+  }
+
+  @return sqrt($square, $tolerance, ($estimate + $square/$estimate)/2);
+}
+
+// https://www.unindented.org/blog/trigonometry-in-sass/
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  } @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+@function fact($number) {
+  $value: 1;
+  @if $number > 0 {
+    @for $i from 1 through $number {
+      $value: $value * $i;
+    }
+  }
+  @return $value;
+}
+
+@function count-round($number, $count: 1) {
+  $digit: pow(10, $count - 1);
+
+  $upper: $number * $digit;
+  $round: floor($upper + 0.5);
+  @return $round / $digit;
+}
+
+// ** Trigonometry *************************************************************
+// == Basic ====================================================================
+@function pi() {
+  @return 3.14159265359;
+}
+
+@function rad($angle) {
+  $unit: unit($angle);
+  $unitless: $angle / ($angle * 0 + 1);
+  // If the angle has 'deg' as unit, convert to radians.
+  @if $unit == deg {
+    $unitless: $unitless / 180 * pi();
+  }
+  @return $unitless;
+}
+
+// == Trigonometry =============================================================
+@function sin($angle) {
+  $sin: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+  }
+  @return $sin;
+}
+
+@function cos($angle) {
+  $cos: 0;
+  $angle: rad($angle);
+  // Iterate a bunch of times.
+  @for $i from 0 through 10 {
+    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+  }
+  @return $cos;
+}
+
+@function tan($angle) {
+  @return sin($angle) / cos($angle);
+}
+
+// == Inverse ==================================================================
+// http://thesassway.com/advanced/inverse-trigonometric-functions-with-sass
+$default-threshold: pi()/180/10;
+@function asin($z, $threshold: $default-threshold) {
+  $sum: 0;
+  $complement: false;
+  $sign: $z/abs($z);
+  $z: abs($z);
+
+  @if $z > sin(pi()/4) {
+    $complement: true;
+    $z: sqrt(1 - pow($z, 2));
+  }
+
+  $term: $z;
+  $i: 0;
+  $k: 1;
+
+  @while $term > $threshold {
+    $sum: $sum + $term;
+
+    $i: $i + 1;
+    $k: $k*(2*$i - 1)/(2*$i);
+    $j: 2*$i + 1;
+
+    $term: $k*pow($z, $j)/$j;
+  }
+
+  @return $sign * (if($complement, pi()/2 - $sum, $sum));
+}
+
+@function acos($z, $threshold: $default-threshold) {
+  @return pi()/2 - asin($z, $threshold);
+}
+
+@function atan($z, $threshold: $default-threshold) {
+  @return asin($z/sqrt(1 + pow($z, 2)), $threshold);
+}
