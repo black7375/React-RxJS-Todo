@@ -1,3 +1,6 @@
+@import './Math.scss';
+@import '../Settings/Layouts.scss';
+
 // ** Basics *******************************************************************
 // == Color ====================================================================
 @function lightColor($color, $amount: 0) {
@@ -104,6 +107,60 @@
 
 // ** Responsive ***************************************************************
 // == Size =====================================================================
+@function zip-responsive() {
+  @return zip(
+    map-values($screen-distances), map-values($screen-sizes      ),
+    map-values($breakpoints     ), map-values($breakpoints-height)
+  );
+}
+
+@function calc-ppi($screen-width, $screen-height, $screen-size) {
+  @return sqrt(pow($screen-width, 2) + pow($screen-height, 2)) / $screen-size;
+}
+
+@function calc-angle($size) {
+  $smallest: null;
+  $size: to-number(convert-unit($size, 'px'));
+  $values: zip-responsive();
+
+  @each $value in $values {
+    $screen-distance: nth($value, 1) * 100;
+    $screen-size:     nth($value, 2);
+    $screen-width:    to-number(nth($value, 3));
+    $screen-height:   to-number(nth($value, 4));
+
+    $ppi: calc-ppi($screen-width, $screen-height, $screen-size);
+    $independent-value: $screen-distance * $ppi;
+    @if (($smallest == null) or ($smallest > $independent-value)) {
+      $smallest: $independent-value;
+    }
+  }
+
+  $angle: $size * 54 / $smallest;
+  $visual-angle: atan($angle) * (10800 / pi());
+  @return count-round($visual-angle, 2);
+}
+
+@function calc-size($visual-angle) {
+  $break-sizes: ();
+  $values: zip-responsive();
+
+  @each $value in $values {
+    $screen-distance: nth($value, 1) * 100;
+    $screen-size:     nth($value, 2);
+    $screen-width:    to-number(nth($value, 3));
+    $screen-height:   to-number(nth($value, 4));
+
+    $ppi: calc-ppi($screen-width, $screen-height, $screen-size);
+    $angle: tan(pi() * $visual-angle / 10800);
+    $size: $screen-distance * $angle * $ppi / 54;
+
+    $break-sizes: append($break-sizes, ($size));
+  }
+
+  @return $break-sizes;
+}
+
 // https://gist.github.com/eduardoboucas/84144cd85cbd2ad4db1ca8b902585ca0
 @function im-to-em($breakpoints, $base-value: 16px) {
   $new-breakpoints: ();
