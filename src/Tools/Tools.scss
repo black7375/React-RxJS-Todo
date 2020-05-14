@@ -32,18 +32,10 @@
 }
 
 // https://css-tricks.com/snippets/sass/strip-unit-function/
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
-
-  @return $number;
-}
-
 // https://stackoverflow.com/questions/47630616/scss-arithmetic-operation-with-string
 @function to-number($value) {
-  @if type-of($value) == 'number' {
-    @return $value;
+  @if type-of($value) == 'number' and not unitless($value) {
+    @return $value / ($value * 0 + 1);
   } @else if type-of($value) != 'string' {
     @error 'Value for `to-number` should be a number or a string.';
   }
