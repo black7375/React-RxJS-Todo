@@ -1,3 +1,4 @@
+@import '~include-media-or/dist/include-media';
 @import './Math.scss';
 @import '../Settings/Layouts.scss';
 
@@ -188,7 +189,7 @@
 
 @mixin fluid-media($property,
   $default-size, $phone-size,   $tablet-size,
-  $laptop-size,  $desktop-size, $high-dekstop-size) {
+  $laptop-size,  $desktop-size, $high-desktop-size) {
 
   #{$property}:   fluid-size($default-size, $phone-size,        0px,            $phone-width       );
 
