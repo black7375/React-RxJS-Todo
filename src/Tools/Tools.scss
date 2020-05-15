@@ -136,6 +136,31 @@
   @return $range-list;
 }
 
+// https://hugogiraudel.com/2014/04/28/casting-map-into-list/
+@function to-list($value, $keep: 'both') {
+  $keep: if(index('keys' 'values', $keep), $keep, 'both');
+
+  @if type-of($value) == 'map' {
+    $keys: ();
+    $values: ();
+
+    @each $key, $val in $value {
+      $keys: append($keys, $key);
+      $values: append($values, $val);
+    }
+
+    @if $keep == 'keys' {
+      @return $keys;
+    } @else if $keep == 'values' {
+      @return $values;
+    } @else {
+      @return zip($keys, $values);
+    }
+  }
+
+  @return if(type-of($value) != 'list', ($value,), $value);
+}
+
 @function to-map($keys, $values) {
   $map: ();
 
@@ -146,8 +171,32 @@
   @return $map;
 }
 
+@function map-index($map, $key-value, $type: 'key') {
+  @if      $type == 'key'   {
+    @return index(map-keys($map),   $key-value);
+  }
+  @else if $type == 'value' {
+    @return index(map-values($map), $key-value);
+  }
+  @else if $type == 'map'   {
+    @return index($map, to-list($key-value));
+  }
+}
+
+@function map-nth($map, $n, $type: 'key') {
+  @if      $type == 'key'   {
+    @return nth(nth($map, $n), 1);
+  }
+  @else if $type == 'value' {
+    @return nth(nth($map, $n), 2);
+  }
+}
+
 // ** Responsive ***************************************************************
 // == Size =====================================================================
+$DEFAULT-BREAK: default;
+$DEFAULT-SIZE: 16px;
+
 @function zip-responsive() {
   @return zip(
     map-values($screen-distances), map-values($screen-sizes      ),
