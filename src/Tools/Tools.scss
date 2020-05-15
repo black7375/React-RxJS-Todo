@@ -128,9 +128,17 @@
 
 // == Utils ====================================================================
 @function range($values) {
+  $iter-num: 0;
   $range-list: ();
 
-  @for $i from 1 through length($values) {
+  @if type-of($values) == number {
+    $iter-num: $values;
+  }
+  @else {
+    $iter-num: length($values);
+  }
+
+  @for $i from 1 through $iter-num {
     $range-list: append($range-list, $i);
   }
   @return $range-list;
@@ -276,37 +284,44 @@ $DEFAULT-SIZE: 16px;
   @return calc(#{$rate*100}vw #{$sign} #{$basic-size});
 }
 
-@mixin fluid-media($property,
-                   $default-size, $phone-size,   $tablet-size,
-                   $laptop-size,  $desktop-size, $high-desktop-size) {
-  $default-size:      convert-unit($default-size,      'px');
-  $phone-size:        convert-unit($phone-size,        'px');
-  $tablet-size:       convert-unit($tablet-size,       'px');
-  $laptop-size:       convert-unit($laptop-size,       'px');
-  $desktop-size:      convert-unit($desktop-size,      'px');
-  $high-desktop-size: convert-unit($high-desktop-size, 'px');
+@mixin fluid-media($property, $sizes) {
+  $fluid-sizes: convert-unit-map($sizes, 'px');
+  $fluid-breakpoints: map-merge(($DEFAULT-BREAK: 0px), convert-unit-map($breakpoints, 'px'));
+  @if not map-has-key($fluid-sizes, $DEFAULT-BREAK) {
+    $default-map: ($DEFAULT-BREAK: $DEAFULT-SIZE);
+    $fluid-sizes: map-merge($default-map, $fluid-sizes);
+  }
 
-  #{$property}:   fluid-size($default-size, $phone-size,        0px,            $phone-width       );
+  @each $i in range(length($fluid-breakpoints) - 1) {
+    $now-key:  map-nth($fluid-breakpoints, $i);
+    $next-key: map-nth($fluid-breakpoints, $i + 1);
 
-  @include media(">=phone") {
-    #{$property}: fluid-size($phone-size,   $tablet-size,       $phone-width,   $tablet-width      );
-  }
-  @include media(">=tablet") {
-    #{$property}: fluid-size($tablet-size,  $laptop-size,       $tablet-width,  $laptop-size       );
-  }
-  @include media(">=laptop") {
-    #{$property}: fluid-size($laptop-size,  $desktop-size,      $laptop-width,  $desktop-width     );
-  }
-  @include media(">=desktop") {
-    #{$property}: fluid-size($desktop-size, $high-desktop-size, $desktop-width, $high-desktop-width);
+    $now-size:   map-get($fluid-sizes, $now-key );
+    $next-size:  map-get($fluid-sizes, $next-key);
+    $now-break:  map-get($fluid-breakpoints, $now-key );
+    $next-break: map-get($fluid-breakpoints, $next-key);
+    @if $now-key == $DEFAULT-BREAK {
+      #{$property}: fluid-size($now-size, $next-size, $now-break, $next-break);
+    }
+    @else {
+      @include media(">=#{$now-key}") {
+        #{$property}: fluid-size($now-size, $next-size, $now-break, $next-break);
+      }
+    }
   }
 }
 
-@mixin fluid-font-size($default-size, $phone-size,   $tablet-size,
-                       $laptop-size,  $desktop-size, $high-dekstop-size) {
-  @include fluid-media(font-size,
-  $default-size, $phone-size,   $tablet-size,
-  $laptop-size,  $desktop-size, $high-dekstop-size);
+@mixin fluid($property, $size) {
+  $scaled-size: calc-size(calc-angle($size));
+
+  $keys:   join($DEFAULT-BREAK, map-keys($breakpoints));
+  $values: join($size, $scaled-size);
+
+  @include fluid-media($property, to-map($keys, $values));
+}
+
+@mixin font-size($size) {
+  @include fluid(font-size, $size);
 }
 
 // ** Container ****************************************************************
