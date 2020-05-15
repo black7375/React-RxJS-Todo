@@ -28,19 +28,19 @@ $phone-width:  480px;
 $phone-height: 854px;
 
 $breakpoints: (        // px
-  phone:        #{$phone-width},
-  tablet:       #{$tablet-width},
-  laptop:       #{$laptop-width},
-  desktop:      #{$desktop-width},
-  high-desktop: #{$high-desktop-width}
+  phone:        $phone-width,
+  tablet:       $tablet-width,
+  laptop:       $laptop-width,
+  desktop:      $desktop-width,
+  high-desktop: $high-desktop-width
 );
 
 $breakpoints-height: ( // px
-  phone:        #{$phone-height},
-  tablet:       #{$tablet-height},
-  laptop:       #{$laptop-height},
-  desktop:      #{$desktop-height},
-  high-desktop: #{$high-desktop-height}
+  phone:        $phone-height,
+  tablet:       $tablet-height,
+  laptop:       $laptop-height,
+  desktop:      $desktop-height,
+  high-desktop: $high-desktop-height
 );
 
 $screen-sizes: (       // inch
