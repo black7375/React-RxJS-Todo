@@ -111,7 +111,7 @@
 
   @each $value in $list {
     $converted: convert-unit($value, $unit);
-    $new-list: append($new-list, $value);
+    $new-list: append($new-list, $converted);
   }
   @return $new-list;
 }
@@ -119,9 +119,9 @@
 @function convert-unit-map($map, $unit) {
   $new-map: ();
 
-  @each $key, $value in $list {
+  @each $key, $value in $map {
     $converted: convert-unit($value, $unit);
-    $new-map: map-merge($new-map, ($key: $value));
+    $new-map: map-merge($new-map, ($key: $converted));
   }
   @return $new-map;
 }
@@ -136,7 +136,7 @@
   @return $range-list;
 }
 
-@fucntion to-map($keys, $values) {
+@function to-map($keys, $values) {
   $map: ();
 
   @each $i in range($keys) {
