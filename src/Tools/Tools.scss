@@ -222,8 +222,63 @@ $DEFAULT-SIZE:  16px    !default;
   @include fluid-media($property, to-map($keys, $values));
 }
 
+// -- Interface ----------------------------------------------------------------
+// Font
 @mixin font-size($size) {
   @include fluid(font-size, $size);
+}
+@mixin line-height($size) {
+  @include fluid(line-height, $size);
+}
+@mixin text-indent($size) {
+  @include fluid(text-indent, $size);
+}
+@mixin letter-spacing($size) {
+  @include fluid(letter-spacing, $size);
+}
+@mixin word-spacing($size) {
+  @include fluid(word-spacing, $size);
+}
+
+// Box
+@mixin width($size) {
+  @include fluid(width, $size);
+}
+@mixin height($size) {
+  @include fluid(height, $size);
+}
+@mixin border-width($size) {
+  @include fluid(border-width, $size);
+}
+@mixin margin($size) {
+  @include fluid(margin, $size);
+}
+@mixin margin-top($size) {
+  @include fluid(margin-top, $size);
+}
+@mixin margin-bottom($size) {
+  @include fluid(margin-bottom, $size);
+}
+@mixin margin-left($size) {
+  @include fluid(margin-left, $size);
+}
+@mixin margin-right($size) {
+  @include fluid(margin-right, $size);
+}
+@mixin padding($size) {
+  @include fluid(padding, $size);
+}
+@mixin padding-top($size) {
+  @include fluid(padding-top, $size);
+}
+@mixin padding-bottom($size) {
+  @include fluid(padding-bottom, $size);
+}
+@mixin padding-left($size) {
+  @include fluid(padding-left, $size);
+}
+@mixin padding-right($size) {
+  @include fluid(padding-right, $size);
 }
 
 // ** Container ****************************************************************
