@@ -234,28 +234,6 @@ $DEFAULT-SIZE:  16px    !default;
   contain:strict style;
 }
 
-// == Layout ===================================================================
-// https://developers.google.com/web/fundamentals/design-and-ux/responsive/patterns
-// == Mostly Fluid =============================================================
-
-@mixin mostly-fluid-container() {
-  @include flex-container-start-left();
-  @include flex-container-line-multi();
-}
-
-@mixin mostly-fluid-item() {
-  width: 100%;
-  // margin-left: auto;
-  // margin-right: auto;
-}
-
-// == Column Drop ==============================================================
-
-// == Layout Shifter ===========================================================
-
-// == Thiny Tweaks =============================================================
-// == Off Canvas ===============================================================
-
 // ** Flex *********************************************************************
 // == Flex Container ===========================================================
 $DEFAULT-FLEX-MODE: flex;
