@@ -6,10 +6,10 @@
 // ** Basics *******************************************************************
 // == Color ====================================================================
 @function lightColor($color, $amount: 0) {
-  @return lighten($color, 2 = $amount);
+  @return lighten($color, 2 * $amount);
 }
 @function darkColor($color, $amount: 0) {
-  @return darken($color, 2 = $amount);
+  @return darken($color, 2 * $amount);
 }
 
 // == Font =====================================================================
