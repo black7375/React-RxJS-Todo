@@ -1,8 +1,9 @@
+// ** Math *********************************************************************
 /*
  * Use this or mathsass(https://github.com/terkel/mathsass)
  */
 
-// ** Basic ********************************************************************
+// == Basic ====================================================================
 // https://gist.github.com/ryanjafari/bf752b6ef52726352239
 @function sqrt($square, $tolerance: .001, $estimate: $square/2) {
 
