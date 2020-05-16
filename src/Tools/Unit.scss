@@ -1,0 +1,319 @@
+// ** Unit *********************************************************************
+// Based on https://github.com/jakob-e/unitconversion
+
+// _____________________________________________________________________________
+//
+//   Function               Input units
+//
+//   Absolute length
+//   px(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   pt(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   pc(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   mm(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   cm(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   in(input);             px, pt, pc, mm, cm, in, em, rem, number
+//
+//   Relative length
+//   em(input);             px, pt, pc, mm, cm, in, em, rem, number
+//   rem(input);            px, pt, pc, mm, cm, in, em, rem, number
+//   ex(input);             ex, number
+//   ch(input);             ch, number
+//   vw(input);             vw, number
+//   vh(input);             vh, number
+//   vmin(input);           vmin, number
+//   vmax(input);           vmax, number
+//
+//   Angle
+//   deg(input);            deg, rad, grad, turn, number
+//   rad(input);            deg, rad, grad, turn, number
+//   grad(input);           deg, rad, grad, turn, number
+//   turn(input);           deg, rad, grad, turn, number
+//
+//   Resolution
+//   dpi(input);            dpi, dpcm, dppx, number
+//   dpcm(input);           dpi, dpcm, dppx, number
+//   dppx(input);           dpi, dpcm, dppx, number
+//
+//   Time
+//   s(input);              s, ms, number
+//   ms(input);             s, ms, number
+//
+//   Frequency
+//   hz(input);             hz, khz, number
+//   khz(input);            hz, khz, number
+//
+//   String
+//   str(input);            anything not null
+//
+//   Number, int and uint
+//   num(input);            px, pt, pc, mm, cm, in, em, rem, ex, ch,
+//                          vw, vh, vmin, vmax, deg, rad, grad, turn,
+//                          dpi, dpcm, dppx, s, ms, hz, khz, number, string
+//   int(input);            as number
+//   uint(input);           as number
+//
+//   ratio                  number to fraction
+//
+//   ETC Convert
+//   one-unit(input);       px, pt, pc, mm, cm, in, em, rem, ex, ch,
+//                          vw, vh, vmin, vmax, deg, rad, grad, turn,
+//                          dpi, dpcm, dppx, s, ms, hz, khz, number
+//   to-unit(input);        same
+//   to-unit-list(list);    same as list
+//   to-unit-map(map);      same as map
+//
+//   Aliases
+//   string(input);
+//   number(input);
+//
+// _____________________________________________________________________________
+
+// == Base =====================================================================
+// Base font size in pixel for converting em and rem to absolute lengths.
+$root-font-size: 16px            !default;
+$base-font-size: $root-font-size !default;
+
+@function n-units($number) {
+  @return (
+    // absolute length
+    px: $number * 1px, pt: $number * 1pt, pc: $number * 1pc,
+    mm: $number * 1mm, cm: $number * 1cm, in: $number * 1in,
+
+    // relative length - font based
+    em: $number * 1em, rem: $number * 1rem,
+    ch: $number * 1ch,  ex: $number * 1ex,
+
+    // relative length - viewport based
+    vw:   $number * 1vw,     vh: $number * 1vh,
+    vmin: $number * 1vmin, vmax: $number * 1vmax,
+
+    // angle
+    deg:  $number * 1deg,   rad: $number * 1rad,
+    grad: $number * 1grad, turn: $number * 1turn,
+
+    // time
+    s: $number * 1s, ms: $number * 1ms,
+
+    // frequency
+    hz: $number * 1Hz, khz: $number * 1kHz,
+    Hz: $number * 1Hz, kHz: $number * 1kHz,
+
+    // resolution
+    dppx: $number * 1dppx, dpcm: $number * 1dpcm, dpi: $number * 1dpi,
+
+    // percent or number
+    "%": $number * 1%, pct:    $number * 1%, percent: $number * 1%,
+    num: $number * 1,  number: $number * 1
+  );
+}
+
+// == Interface ================================================================
+// Absolute lengths
+@function px($input){ @return to-unit($input, px); }
+@function pt($input){ @return to-unit($input, pt); }
+@function pc($input){ @return to-unit($input, pc); }
+@function mm($input){ @return to-unit($input, mm); }
+@function cm($input){ @return to-unit($input, cm); }
+@function in($input){ @return to-unit($input, in); }
+
+// Angles
+@function  deg($input){ @return to-unit($input,  deg); }
+@function  rad($input){ @return to-unit($input,  rad); }
+@function grad($input){ @return to-unit($input, grad); }
+@function turn($input){ @return to-unit($input, turn); }
+
+// Resolution
+@function  dpi($input){ @return to-unit($input,  dpi); }
+@function dpcm($input){ @return to-unit($input, dpcm); }
+@function dppx($input){ @return to-unit($input, dppx); }
+
+// Time
+@function ms($input){ @return to-unit($input, ms); }
+@function  s($input){ @return to-unit($input,  s); }
+
+// Frequencies
+@function  hz($input){ @return to-unit($input,  hz); }
+@function khz($input){ @return to-unit($input, khz); }
+
+// Relative lengths
+@function em($input...){
+  $em: to-unit(nth($input,1), em);
+  // Adjust for compounds (visual size)
+  @if length($input) > 1 {
+    @for $i from 2 through length($input){
+      $em: $em / num(em(nth($input,$i)));
+    }
+  }
+  @return $em;
+}
+@function rem($input){ @return to-unit($input, rem); }
+
+// Inconvertible relative lengths – depends on font
+@function ex($input){ @return to-unit($input, ex); }
+@function ch($input){ @return to-unit($input, ch); }
+
+// Viewport
+@function   vw($input){ @return to-unit($input,   vw); }
+@function   vh($input){ @return to-unit($input,   vh); }
+@function vmin($input){ @return to-unit($input, vmin); }
+@function vmax($input){ @return to-unit($input, vmax); }
+
+// Strings and numbers
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+// https://stackoverflow.com/questions/47630616/scss-arithmetic-operation-with-string
+@function str($input){ @return #{$input};  }
+@function num($input) {
+  @if type-of($input) == 'number' and not unitless($input) {
+    @return $input / ($input * 0 + 1);
+  } @else if type-of($input) != 'string' {
+    @error 'Could not convert `#{$input}` - must be `type-of number or a string.`';
+    @return null;
+  }
+
+  $result: 0;
+  $digits: 0;
+  $minus: str-slice($input, 1, 1) == '-';
+  $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
+
+  @for $i from if($minus, 2, 1) through str-length($input) {
+    $character: str-slice($input, $i, $i);
+
+    @if (index(map-keys($numbers), $character) or $character == '.') {
+      @if $character == '.' {
+        $digits: 1;
+      } @else if $digits == 0 {
+        $result: $result * 10 + map-get($numbers, $character);
+      } @else {
+        $digits: $digits * 10;
+        $result: $result + map-get($numbers, $character) / $digits;
+      }
+    }
+  }
+
+  @return if($minus, -$result, $result);;
+}
+@function int($input){
+  $num: num($input);
+  @return if($num<0, ceil($num), floor($num));
+}
+@function uint($input){ @return abs(int($input)); }
+
+// unit
+@function one-unit($input) {
+  @if type-of($input) != 'string' {
+    @error 'Value for `unit` should be a string.';
+  }
+
+  $units: n-units(1);
+  $parsed-unit: false;
+
+  @each $unit in $units {
+    // str-index - find substring in a string
+    // 'px' in '10px' for example
+
+    // $unit is a pair of ['px': 1px] (item in $units)
+    // nth(['px': 1px], 1) returns 'px'
+    // nth(['px': 1px], 2) returns 1px
+
+    @if (str-index($input, nth($unit, 1))) {
+      $parsed-unit: nth($unit, 2);
+    }
+  }
+
+  @if (not $parsed-unit) {
+    @error 'Invalid unit `#{$input}` – must be a valid CSS unit';
+  }
+
+  @return $parsed-unit;
+}
+
+// Aliases
+@function string($input){ @return str($input);}
+@function number($input){ @return num($input);}
+
+// == Conversion ===============================================================
+@function to-unit($input, $unit){
+  // Test against valid CSS units
+  $units: n-units(0);
+  $to-unit: map-get($units, $unit);
+
+  // Error handling – wrong $unit
+  // Incomparable units are caught in convertion
+  @if not $to-unit {
+    @error 'Could not convert to `#{$unit}` – must be a valid CSS unit';
+    @return null;
+  }
+
+  // Number/incomparable conversion
+  @if index(num number ex ch vw vh vmin vmax, $unit) {
+    $value: num($input);
+  }
+
+  // EM convertion using px as base
+  @if index(em, unit($input)) {
+    $input: 0px + num($input) * $base-font-size/1px;
+  }
+  @if index(em, $unit) and not unitless($input) {
+    $input: 0px + px($input);
+    $input: num($input) * 1px/$base-font-size;
+  }
+
+  // REM convertion using px as base
+  @if index(rem, unit($input)) {
+    $input: 0px + num($input) * $root-font-size/1px;
+  }
+  @if index(rem, $unit) and not unitless($input) {
+    $input: 0px + $input;
+    $input: num($input) * 1px/$root-font-size;
+  }
+
+  // Bug fix – resolution units seems to be flipped
+  @if index(dpi dpcm dppx, $unit){
+    $units: (dppx: 0dppx, dpcm: 0dpcm, dpi: 0dpi);
+    $input-unit: map-get($units, unit($input));
+    $input: if(1dppx < 95dpi,num($input-unit + (num($input) + $to-unit)),$input);
+  }
+
+  // Convert
+  @return $to-unit + $input;
+}
+
+@function to-unit-list($list, $unit) {
+  $new-list: ();
+
+  @each $value in $list {
+    $converted: to-unit($value, $unit);
+    $new-list: append($new-list, $converted);
+  }
+  @return $new-list;
+}
+
+@function to-unit-map($map, $unit) {
+  $new-map: ();
+
+  @each $key, $value in $map {
+    $converted: to-unit($value, $unit);
+    $new-map: map-merge($new-map, ($key: $converted));
+  }
+  @return $new-map;
+}
+
+//  Convert number to ratio (fraction)
+//  ratio(1.7777778) =>   16/9
+@function ratio($x, $y: null){
+  @if not $y {
+    $n: $x; $y: 1;
+    @while $y < 10 {
+      $x:  $n * 10 - ((10 - $y) * $n);
+      @if $x == round($x){ @return #{$x}/#{$y}; }
+      @else { $y: $y + 1; }
+    }
+    $x: round($n * 1000000); $y: 1000000;
+    @while $x % 10 == 0 { $x: $x/10; $y: $y/10; }
+    @while $x % 5 == 0 { $x: $x/5; $y: $y/5; }
+    @while $x % 2 == 0 { $x: $x/2; $y: $y/2; }
+    @return #{$x}/#{$y};
+  }
+  @else if $x == round($x) and $y == round($y){ @return #{$x}/#{$y}; }
+  @warn 'X and Y must be integers'; @return false;
+}
