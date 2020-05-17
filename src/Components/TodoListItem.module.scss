@@ -23,8 +23,8 @@
   .remove {
     padding: $default-padding + 0.2rem;
     svg {
-      font-size: 1.5rem;
-      color:     lightColor($red, 3);
+      @include font-size(1.4rem);
+      color: lightColor($red, 3);
     }
     &:hover {
       svg {

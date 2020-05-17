@@ -16,16 +16,16 @@
   .app-title {
     @include container-all;
     @include flex-item-alignY-fill;
+    @include font-size(3.5rem);
     font-family: $notoSerif;
     font-weight: $heavy;
-    font-size:   4rem;
     text-align:  center;
     padding:     $default-padding * 2;
     max-height:  $half-height;
   }
   .content {
     @include container;
+    @include font-size(1.3rem);
     width:     40rem;
-    font-size: 1.2rem;
   }
 }

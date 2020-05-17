@@ -28,7 +28,7 @@
     $round-left:  1px;
     $round-right: 7px;
 
-    font-size:        1.7rem;
+    @include font-size(1.4rem);
     color:            $white;
     background-color: lightColor($lightGrey, 2);
     cursor:           pointer;
