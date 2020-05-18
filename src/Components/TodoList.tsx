@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { RecyclerListView, LayoutProvider } from 'recyclerlistview/web';
-import { stylesBind } from '../Tools/Tools';
+import { useStateOnly, stylesBind } from '../Tools/Tools';
 import ListDataProvider from '../Tools/RecyclerProvider';
 import { TodoItemT } from '../Generic/TodoModel';
 import TodoService from '../Services/TodoService';
-import TodoListItem from '../Components/TodoListItem';
+import TodoListItem from './TodoListItem';
 import styles from './TodoList.module.scss';
 
 /** Notice *********************************************************************
@@ -33,7 +33,7 @@ const TodoList = () => {
     return () => { sub.unsubscribe(); };
   }, []);
 
-  const [layoutProvider, setLayoutProvider] = useState(new LayoutProvider(
+  const layoutProvider = useStateOnly(new LayoutProvider(
     (index) => { return ListViewType.TODOLISTITEMS },
     (type, dim) => {
       switch(type) {
