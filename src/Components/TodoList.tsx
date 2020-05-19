@@ -14,8 +14,9 @@ import styles from './TodoList.module.scss';
 
 const cx = stylesBind(styles);
 
-const ListViewType = {
-  TODOLISTITEMS: 0
+enum ListViewType {
+  ODDITEMS  = 0,
+  EVENITEMS = 1
 }
 
 const TodoList = () => {
@@ -34,10 +35,21 @@ const TodoList = () => {
   }, []);
 
   const layoutProvider = useStateOnly(new LayoutProvider(
-    (index) => { return ListViewType.TODOLISTITEMS },
+    (index) => {
+      if (index % 2 !== 0) {
+        return ListViewType.ODDITEMS;
+      } else {
+        return ListViewType.EVENITEMS;
+      }
+    },
     (type, dim) => {
       switch(type) {
-        case ListViewType.TODOLISTITEMS: {
+        case ListViewType.ODDITEMS: {
+          dim.width  = width; // 630.4 584
+          dim.height = 55;    // 55.2  54.4
+          break;
+        }
+        case ListViewType.EVENITEMS: {
           dim.width  = width; // 630.4 584
           dim.height = 55;    // 55.2  54.4
           break;
@@ -51,8 +63,11 @@ const TodoList = () => {
 
   const rowRenderer = (viewType: React.ReactText, todo: TodoItemT) => {
     switch (viewType) {
-      case ListViewType.TODOLISTITEMS: {
+      case ListViewType.ODDITEMS: {
         return (<TodoListItem todo={todo} key={todo.id} />);
+      }
+      case ListViewType.EVENITEMS: {
+        return (<TodoListItem todo={todo} key={todo.id} even />);
       }
       default:
         return null;

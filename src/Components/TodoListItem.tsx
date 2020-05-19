@@ -11,15 +11,16 @@ const cx = stylesBind(styles);
 interface TodoListItemProps {
   todo: TodoItemT;
   key:  TodoItemT['id'];
+  even?: true | undefined;
 }
 
-const TodoListItem = ({ todo }: TodoListItemProps) => {
+const TodoListItem = ({ todo, even }: TodoListItemProps) => {
   const { id, text, checked } = todo;
   const onRemoveDown = useCallback(() => TodoService.onRemove(id), [id]);
   const onToggleDown = useCallback(() => TodoService.onToggle(id), [id]);
 
   return (
-    <div className={cx('TodoListItem')}>
+    <div className={cx('TodoListItem', { even })}>
       <div className={cx('checkbox', { checked })} onPointerDown={onToggleDown} >
         {checked ? <IoMdCheckmarkCircleOutline /> : <IoIosRadioButtonOff /> }
         <div className={cx('text')}>{text}</div>
