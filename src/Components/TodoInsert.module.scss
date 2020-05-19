@@ -29,7 +29,7 @@
     $round-left:  1px;
     $round-right: 7px;
 
-    @include font-size(1.4rem);
+    @include font-size(1.4rem, 2.1rem);
     color:            $white;
     background-color: lightColor($lightGrey, 2);
     cursor:           pointer;

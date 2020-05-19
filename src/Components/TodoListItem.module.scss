@@ -1,3 +1,4 @@
+@import '~include-media-or/dist/include-media';
 @import '../Settings/Colors.scss';
 @import '../Settings/Layouts.scss';
 @import '../Tools/Tools.scss';
@@ -11,19 +12,21 @@
     background-color: $darkWhite;
   }
 
-  svg {
-    visibility: hidden;
-  }
-  &:hover {
+  @include media(">=laptop") {
     svg {
-      visibility: visible;
+      visibility: hidden;
+    }
+    &:hover {
+      svg {
+        visibility: visible;
+      }
     }
   }
 
   .remove {
     padding: $default-padding + 0.2rem;
     svg {
-      @include font-size(1.4rem);
+      @include font-size(1.4rem, 2.1rem);
       color: lightColor($red, 3);
     }
     &:hover {
@@ -40,7 +43,7 @@
     padding: $default-padding + 0.2rem;
 
     svg {
-      font-size:  2rem;
+      @include font-size(2rem, 2.3rem);
       visibility: visible;
       color:      lightColor($lightGrey, 10);
     }

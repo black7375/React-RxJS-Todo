@@ -62,7 +62,9 @@ const TodoList = () => {
   return (
     <div className={cx('TodoList')}>
       <RecyclerListView dataProvider={dataProvider} layoutProvider={layoutProvider}
-                        rowRenderer={rowRenderer} />
+                        rowRenderer={rowRenderer}
+                        canChangeSize
+      />
     </div>
   );
 };
