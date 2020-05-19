@@ -169,14 +169,21 @@ $DEFAULT-SIZE:  16px    !default;
 }
 
 // https://www.madebymike.com.au/writing/fluid-type-calc-examples/
-@function fluid-size($start-size, $end-size, $min-screen,  $max-screen) {
+@function fluid-rate($start-size, $end-size, $min-screen, $max-screen) {
+  @return ($end-size - $start-size) / ($max-screen - $min-screen);
+}
+@function fluid-basic-size($start-size, $min-screen, $rate) {
+  @return $start-size - $rate * $min-screen;
+}
+
+@function fluid-size($start-size, $end-size, $min-screen, $max-screen) {
   $start-size: em($start-size);
   $end-size:   em($end-size);
   $min-screen: em($min-screen);
   $max-screen: em($max-screen);
 
-  $rate: ($end-size - $start-size) / ($max-screen - $min-screen);
-  $basic-size: $start-size - $rate * $min-screen;
+  $rate: fluid-rate($start-size, $end-size, $min-screen, $max-screen);
+  $basic-size: fluid-basic-size($start-size, $min-screen, $rate);
 
   $sign: "+";
   @if ($basic-size < 0) {
@@ -185,16 +192,31 @@ $DEFAULT-SIZE:  16px    !default;
   }
   @return calc(#{$rate*100}vw #{$sign} #{$basic-size});
 }
+@function fluid-limit-break($start-size, $end-size, $max-size,
+                            $min-screen, $max-screen) {
+  $start-size: px($start-size);
+  $end-size:   px($end-size);
+  $max-size:   px($max-size);
+  $min-screen: px($min-screen);
+  $max-screen: px($max-screen);
 
-@mixin fluid-media($property, $sizes) {
+  $rate: fluid-rate($start-size, $end-size, $min-screen, $max-screen);
+  $basic-size: fluid-basic-size($start-size, $min-screen, $rate);
+
+  @return ($max-size - $basic-size) / $rate;
+}
+
+@mixin fluid-media($property, $sizes, $max-size: null) {
   $fluid-sizes: to-unit-map($sizes, px);
   $fluid-breakpoints: map-merge(($DEFAULT-BREAK: 0px), to-unit-map($breakpoints, px));
   @if not map-has-key($fluid-sizes, $DEFAULT-BREAK) {
     $default-map: ($DEFAULT-BREAK: $DEAFULT-SIZE);
     $fluid-sizes: map-merge($default-map, $fluid-sizes);
   }
+  $limit-break: null;
 
-  @each $i in range(length($fluid-breakpoints) - 1) {
+  $last-size: length($fluid-breakpoints) - 1;
+  @each $i in range($last-size) {
     $now-key:  map-nth($fluid-breakpoints, $i);
     $next-key: map-nth($fluid-breakpoints, $i + 1);
 
@@ -202,83 +224,99 @@ $DEFAULT-SIZE:  16px    !default;
     $next-size:  map-get($fluid-sizes, $next-key);
     $now-break:  map-get($fluid-breakpoints, $now-key );
     $next-break: map-get($fluid-breakpoints, $next-key);
+
+    @if ($max-size != null) {
+      $limit-break: fluid-limit-break($now-size,  $next-size, $max-size,
+                                      $now-break, $next-break);
+
+      $max-size:  px($max-size);
+      $now-size:  if($now-size  > $max-size, $max-size, $now-size );
+      $next-size: if($next-size > $max-size, $max-size, $next-size);
+    }
+
+    $fluid-size: fluid-size($now-size, $next-size, $now-break, $next-break);
     @if $now-key == $DEFAULT-BREAK {
-      #{$property}: fluid-size($now-size, $next-size, $now-break, $next-break);
+      #{$property}: $fluid-size;
+    }
+    @else if($max-size != null) and ($i == $last-size) {
+      @include media(">=#{$limit-break}") {
+        #{$property}: $max-size;
+      }
     }
     @else {
       @include media(">=#{$now-key}") {
-        #{$property}: fluid-size($now-size, $next-size, $now-break, $next-break);
+        #{$property}: $fluid-size;
       }
     }
   }
 }
 
-@mixin fluid($property, $size) {
+@mixin fluid($property, $size, $max-size: null) {
   $scaled-size: calc-size(calc-angle($size));
 
   $keys:   join($DEFAULT-BREAK, map-keys($breakpoints));
   $values: join($size, $scaled-size);
 
-  @include fluid-media($property, to-map($keys, $values));
+  @include fluid-media($property, to-map($keys, $values), $max-size);
 }
 
 // -- Interface ----------------------------------------------------------------
 // Font
-@mixin font-size($size) {
-  @include fluid(font-size, $size);
+@mixin font-size($size, $max-size: null) {
+  @include fluid(font-size, $size, $max-size);
 }
-@mixin line-height($size) {
-  @include fluid(line-height, $size);
+@mixin line-height($size, $max-size: null) {
+  @include fluid(line-height, $size, $max-size);
 }
-@mixin text-indent($size) {
-  @include fluid(text-indent, $size);
+@mixin text-indent($size, $max-size: null) {
+  @include fluid(text-indent, $size, $max-size);
 }
-@mixin letter-spacing($size) {
-  @include fluid(letter-spacing, $size);
+@mixin letter-spacing($size, $max-size: null) {
+  @include fluid(letter-spacing, $size, $max-size);
 }
-@mixin word-spacing($size) {
-  @include fluid(word-spacing, $size);
+@mixin word-spacing($size, $max-size: null) {
+  @include fluid(word-spacing, $size, $max-size);
 }
 
 // Box
-@mixin width($size) {
-  @include fluid(width, $size);
+@mixin width($size, $max-size: null) {
+  @include fluid(width, $size, $max-size);
 }
-@mixin height($size) {
-  @include fluid(height, $size);
+@mixin height($size, $max-size: null) {
+  @include fluid(height, $size, $max-size);
 }
-@mixin border-width($size) {
-  @include fluid(border-width, $size);
+@mixin border-width($size, $max-size: null) {
+  @include fluid(border-width, $size, $max-size);
 }
-@mixin margin($size) {
-  @include fluid(margin, $size);
+@mixin margin($size, $max-size: null) {
+  @include fluid(margin, $size, $max-size);
 }
-@mixin margin-top($size) {
-  @include fluid(margin-top, $size);
+@mixin margin-top($size, $max-size: null) {
+  @include fluid(margin-top, $size, $max-size);
 }
-@mixin margin-bottom($size) {
-  @include fluid(margin-bottom, $size);
+@mixin margin-bottom($size, $max-size: null) {
+  @include fluid(margin-bottom, $size, $max-size);
 }
-@mixin margin-left($size) {
-  @include fluid(margin-left, $size);
+@mixin margin-left($size, $max-size: null) {
+  @include fluid(margin-left, $size, $max-size);
 }
-@mixin margin-right($size) {
-  @include fluid(margin-right, $size);
+@mixin margin-right($size, $max-size: null) {
+  @include fluid(margin-right, $size, $max-size);
 }
-@mixin padding($size) {
-  @include fluid(padding, $size);
+@mixin padding($size, $max-size: null) {
+  @include fluid(padding, $size, $max-size);
 }
-@mixin padding-top($size) {
-  @include fluid(padding-top, $size);
+@mixin padding-top($size, $max-size: null) {
+  @include fluid(padding-top, $size, $max-size);
 }
-@mixin padding-bottom($size) {
-  @include fluid(padding-bottom, $size);
+@mixin padding-bottom($size, $max-size: null) {
+  @include fluid(padding-bottom, $size, $max-size);
 }
-@mixin padding-left($size) {
-  @include fluid(padding-left, $size);
+@mixin padding-left($size, $max-size: null) {
+  @include fluid(padding-left, $size, $max-size);
 }
-@mixin padding-right($size) {
-  @include fluid(padding-right, $size);
+@mixin padding-right($size, $max-size: null) {
+  @include fluid(padding-right, $size, $max-size);
 }
 
 // ** Container ****************************************************************
