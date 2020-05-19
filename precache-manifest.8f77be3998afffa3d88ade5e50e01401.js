@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5cd20099ba8f01ed73d00ceb7250e2ab",
+    "revision": "953ee48c147700d8328289749f8d10c5",
     "url": "/React-RxJS-Todo/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React-RxJS-Todo/static/css/2.8ff17cee.chunk.css"
   },
   {
-    "revision": "e1da302d65227d39ae72",
-    "url": "/React-RxJS-Todo/static/css/main.a11aed57.chunk.css"
+    "revision": "8e3e6b015933859a7974",
+    "url": "/React-RxJS-Todo/static/css/main.2594eec6.chunk.css"
   },
   {
     "revision": "b713ecdfaafa443f0600",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/React-RxJS-Todo/static/js/2.b31400aa.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e1da302d65227d39ae72",
-    "url": "/React-RxJS-Todo/static/js/main.99784890.chunk.js"
+    "revision": "8e3e6b015933859a7974",
+    "url": "/React-RxJS-Todo/static/js/main.ebc35fc5.chunk.js"
   },
   {
     "revision": "636dcd1cd34fc92df7d2",
