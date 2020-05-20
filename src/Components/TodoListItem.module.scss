@@ -8,12 +8,11 @@
   @include flex-container-start-left;
   @include flex-container-alignX-edge;
   @include flex-container-alignY-center;
-  cursor:  pointer;
-  width:   100%;
+  cursor:     pointer;
+  width:      100%;
+  border-top: 1px solid $darkx3White;
   &.even {
     background-color: $darkWhite;
-    border-top:    1px solid $darkx3White;
-    border-bottom: 1px solid $darkx3White;
   }
 
   @include media(">=laptop") {
