@@ -4,6 +4,7 @@ import { useStateOnly, stylesBind } from '../Tools/Tools';
 import ListDataProvider from '../Tools/RecyclerProvider';
 import { TodoItemT } from '../Generic/TodoModel';
 import TodoService from '../Services/TodoService';
+import ExternalScrollView from '../Layouts/ExternalScrollView';
 import TodoListItem from './TodoListItem';
 import styles from './TodoList.module.scss';
 
@@ -77,7 +78,7 @@ const TodoList = () => {
   return (
     <div className={cx('TodoList')}>
       <RecyclerListView dataProvider={dataProvider} layoutProvider={layoutProvider}
-                        rowRenderer={rowRenderer}
+                        rowRenderer={rowRenderer} externalScrollView={ExternalScrollView}
                         canChangeSize
       />
     </div>
