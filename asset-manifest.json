@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/React-RxJS-Todo/static/css/main.2594eec6.chunk.css",
+    "main.css": "/React-RxJS-Todo/static/css/main.137615fe.chunk.css",
     "main.js": "/React-RxJS-Todo/static/js/main.37726c35.chunk.js",
     "main.js.map": "/React-RxJS-Todo/static/js/main.37726c35.chunk.js.map",
     "runtime-main.js": "/React-RxJS-Todo/static/js/runtime-main.bc214aa0.js",
@@ -9,17 +9,17 @@
     "static/js/2.c6f02402.chunk.js": "/React-RxJS-Todo/static/js/2.c6f02402.chunk.js",
     "static/js/2.c6f02402.chunk.js.map": "/React-RxJS-Todo/static/js/2.c6f02402.chunk.js.map",
     "index.html": "/React-RxJS-Todo/index.html",
-    "precache-manifest.de59309ced72d8f84b1e2543db2ba58c.js": "/React-RxJS-Todo/precache-manifest.de59309ced72d8f84b1e2543db2ba58c.js",
+    "precache-manifest.880ed545e012a2797ffaec663f09e69d.js": "/React-RxJS-Todo/precache-manifest.880ed545e012a2797ffaec663f09e69d.js",
     "service-worker.js": "/React-RxJS-Todo/service-worker.js",
     "static/css/2.8ff17cee.chunk.css.map": "/React-RxJS-Todo/static/css/2.8ff17cee.chunk.css.map",
-    "static/css/main.2594eec6.chunk.css.map": "/React-RxJS-Todo/static/css/main.2594eec6.chunk.css.map",
+    "static/css/main.137615fe.chunk.css.map": "/React-RxJS-Todo/static/css/main.137615fe.chunk.css.map",
     "static/js/2.c6f02402.chunk.js.LICENSE.txt": "/React-RxJS-Todo/static/js/2.c6f02402.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bc214aa0.js",
     "static/css/2.8ff17cee.chunk.css",
     "static/js/2.c6f02402.chunk.js",
-    "static/css/main.2594eec6.chunk.css",
+    "static/css/main.137615fe.chunk.css",
     "static/js/main.37726c35.chunk.js"
   ]
 }
