@@ -296,12 +296,14 @@ $DEFAULT-SIZE:  16px    !default;
 @mixin fluid-media($property, $sizes, $max-size: null) {
   $fluid-sizes: to-unit-map($sizes, px);
   $fluid-breakpoints: map-merge(($DEFAULT-BREAK: 0px), to-unit-map($breakpoints, px));
+  $fluid-breakpoints: map-sort-values($fluid-breakpoints);
   @if not map-has-key($fluid-sizes, $DEFAULT-BREAK) {
     $default-map: ($DEFAULT-BREAK: $DEAFULT-SIZE);
     $fluid-sizes: map-merge($default-map, $fluid-sizes);
   }
   $limit-break: null;
 
+  $first-size: 1;
   $last-size: length($fluid-breakpoints) - 1;
   @each $i in range($last-size) {
     $now-key:  map-nth($fluid-breakpoints, $i);
@@ -315,6 +317,9 @@ $DEFAULT-SIZE:  16px    !default;
     @if ($max-size != null) {
       $limit-break: fluid-limit-break($now-size,  $next-size, $max-size,
                                       $now-break, $next-break);
+      @if $limit-break < 0 {
+        $limit-break: 0px;
+      }
 
       $max-size:  px($max-size);
       $now-size:  if($now-size  > $max-size, $max-size, $now-size );
@@ -322,15 +327,20 @@ $DEFAULT-SIZE:  16px    !default;
     }
 
     $fluid-size: fluid-size($now-size, $next-size, $now-break, $next-break);
-    @if $now-key == $DEFAULT-BREAK {
+    @if $now-key == $DEFAULT-BREAK and not contain(null 0, $limit-break) {
       #{$property}: $fluid-size;
     }
-    @else if($max-size != null) and ($i == $last-size) {
-      @include media(">=#{$limit-break}") {
+    @if($max-size != null) and contain($first-size $last-size, $i) {
+      @if $limit-break == 0px {
         #{$property}: $max-size;
       }
+      @else {
+        @include media(">=#{$limit-break}") {
+          #{$property}: $max-size;
+        }
+      }
     }
-    @else {
+    @else if $now-key != $DEFAULT-BREAK {
       @include media(">=#{$now-key}") {
         #{$property}: $fluid-size;
       }
