@@ -167,6 +167,23 @@
   @return $sortedMap;
 }
 
+@function contain($values, $item, $type: 'key') {
+  @if type-of($values) == 'list' {
+    @return index($values, $item) != null;
+  }
+  @else if type-of($values) == 'map' {
+    @if      $type == 'key' {
+      @return map-has-key($values, $item);
+    }
+    @else if $type == 'value' {
+      @return contain(map-values($values), $item);
+    }
+    @else if $type == 'map' {
+      @return map-index($values, $item, 'map') != null;
+    }
+  }
+}
+
 // ** Responsive ***************************************************************
 // == Size =====================================================================
 $DEFAULT-BREAK: default !default;
