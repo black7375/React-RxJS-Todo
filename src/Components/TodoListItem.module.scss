@@ -1,5 +1,6 @@
 @import '~include-media-or/dist/include-media';
 @import '../Settings/Colors.scss';
+@import '../Settings/Fonts.scss';
 @import '../Settings/Layouts.scss';
 @import '../Tools/Tools.scss';
 
@@ -29,7 +30,8 @@
   .remove {
     padding: $default-padding + 0.2rem;
     svg {
-      @include font-size(1.4rem, 2.1rem);
+      @include font-size($default-font-size     + 0.1rem,
+                         $default-font-max-size + 0.1rem);
       color: lightColor($red, 3);
     }
     &:hover {

@@ -1,5 +1,10 @@
+// == Family ===================================================================
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Noto+Serif+KR:wght@900&display=swap');
 
+$notoSans:  'Noto Sans KR', sans-serif;
+$notoSerif: 'Noto Serif KR', serif;
+
+// == Weight ===================================================================
 $thin:       100;
 $ultraLight: 200;
 $light:      300;
@@ -10,5 +15,9 @@ $bold:       700;
 $extraBold:  800;
 $heavy:      900;
 
-$notoSans:  'Noto Sans KR', sans-serif;
-$notoSerif: 'Noto Serif KR', serif;
+// == Size =====================================================================
+$default-font-size:   1.3rem;
+$default-font-max-size: 2rem;
+
+$header-font-size:   3.5rem;
+$header-font-max-size: 5rem;

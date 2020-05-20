@@ -17,7 +17,7 @@
   .app-title {
     @include container-all;
     @include flex-item-alignY-fill;
-    @include font-size(3.5rem, 5rem);
+    @include font-size($header-font-size, $header-font-max-size);
     font-family: $notoSerif;
     font-weight: $heavy;
     text-align:  center;
@@ -26,7 +26,7 @@
   }
   .content {
     @include container;
-    @include font-size(1.3rem, 2rem);
+    @include font-size($default-font-size, $default-font-max-size);
     @include media(">=laptop") {
       width: 40rem;
     }
