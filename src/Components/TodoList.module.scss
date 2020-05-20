@@ -5,6 +5,5 @@
 .TodoList {
   @include container;
   height:        80vh;
-  overflow-y:    scroll;
   border-radius: $default-round;
 }
