@@ -7,8 +7,7 @@ const remRate = 40;
 const vwRate  = 0.8;
 const laptop  = 1280;
 
-const largeMarginRate = 0.1;
-const smallMarginRate = 0.01;
+const marginRate = 3;
 
 // https://codesandbox.io/s/r59m96851q?file=/src/Hello.js
 interface scrollInputProps {
@@ -28,8 +27,8 @@ class ExternalScrollview extends React.Component<ScrollViewDefaultProps, {}> {
   handleLayout = () => {
     const windowWidth = window.innerWidth;
     const ScrollWidth = windowWidth >= laptop
-                      ? rem         * (remRate - largeMarginRate)
-                      : windowWidth * (vwRate  - smallMarginRate);
+                      ? rem         * remRate - marginRate
+                      : windowWidth * vwRate  - marginRate;
     console.log(window.innerWidth);
     this.props.onSizeChanged({
       height: window.innerHeight,
