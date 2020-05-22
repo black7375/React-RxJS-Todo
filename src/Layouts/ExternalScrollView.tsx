@@ -29,7 +29,6 @@ class ExternalScrollview extends React.Component<ScrollViewDefaultProps, {}> {
     const ScrollWidth = windowWidth >= laptop
                       ? rem         * remRate - marginRate
                       : windowWidth * vwRate  - marginRate;
-    console.log(window.innerWidth);
     this.props.onSizeChanged({
       height: window.innerHeight,
       width:  ScrollWidth
