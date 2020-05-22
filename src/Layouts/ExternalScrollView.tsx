@@ -1,13 +1,18 @@
 import React, { createRef } from 'react';
+import { Subscription, fromEvent } from 'rxjs';
 import { ScrollViewDefaultProps } from 'recyclerlistview/dist/web/core/scrollcomponent/BaseScrollView';
 import ScrollViewer from 'recyclerlistview/dist/web/platform/web/scrollcomponent/ScrollViewer';
 
+// Response
 const rem     = 16;
 const remRate = 40;
 const vwRate  = 0.8;
 const laptop  = 1280;
 
 const marginRate = 3;
+
+// Event
+const resize$ = fromEvent(window, "resize");
 
 // https://codesandbox.io/s/r59m96851q?file=/src/Hello.js
 interface scrollInputProps {
@@ -16,15 +21,16 @@ interface scrollInputProps {
   animated: boolean;
 }
 class ExternalScrollview extends React.Component<ScrollViewDefaultProps, {}> {
+  resize?: Subscription;
   componentDidMount() {
-    window.addEventListener("resize", this.handleLayout);
+    this.resize = resize$.subscribe(this.handleLayout);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.handleLayout);
+    this.resize!.unsubscribe();
   }
 
-  handleLayout = () => {
+  handleLayout = (e: Event) => {
     const windowWidth = window.innerWidth;
     const ScrollWidth = windowWidth >= laptop
                       ? rem         * remRate - marginRate
