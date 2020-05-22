@@ -47,12 +47,12 @@ const TodoList = () => {
       switch(type) {
         case ListViewType.ODDITEMS: {
           dim.width  = width; // 630.4 584
-          dim.height = 55;    // 55.2  54.4
+          dim.height = 60;    // 55.2  54.4
           break;
         }
         case ListViewType.EVENITEMS: {
           dim.width  = width; // 630.4 584
-          dim.height = 55;    // 55.2  54.4
+          dim.height = 60;    // 55.2  54.4
           break;
         }
         default:

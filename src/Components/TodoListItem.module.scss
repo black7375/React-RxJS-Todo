@@ -47,7 +47,8 @@
     padding: $default-padding - 0.2rem;
 
     svg {
-      @include font-size(2rem, 2.3rem);
+      @include font-size($default-font-size     + 0.5rem,
+                         $default-font-max-size + 0.3rem);
       visibility: visible;
       color:      lightColor($lightGrey, 10);
     }
