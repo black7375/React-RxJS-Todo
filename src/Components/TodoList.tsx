@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { RecyclerListView, LayoutProvider } from 'recyclerlistview/web';
-import { useStateOnly, stylesBind } from '../Tools/Tools';
+import { useSelector, useStateOnly, stylesBind } from '../Tools/Tools';
 import ListDataProvider from '../Tools/RecyclerProvider';
 import { TodoItemT } from '../Generic/TodoModel';
-import TodoService from '../Services/TodoService';
 import ExternalScrollView from '../Layouts/ExternalScrollView';
 import TodoListItem from './TodoListItem';
 import styles from './TodoList.module.scss';
@@ -21,19 +20,16 @@ enum ListViewType {
 }
 
 const TodoList = () => {
+  const todos = useSelector((store) => store.todos);
   const width = window.innerWidth;
   const renderData = new ListDataProvider(
     (r1: TodoItemT, r2: TodoItemT) => r1 !== r2
-  ).cloneWithRows(TodoService.initData);
+  ).cloneWithRows(todos);
 
   const [dataProvider, setDataProvider] = useState(renderData);
   useEffect(() => {
-    const sub = TodoService.todos$.subscribe((todos) => {
-      setDataProvider((dataProvider) => dataProvider.cloneWithRows(todos));
-      }
-    );
-    return () => { sub.unsubscribe(); };
-  }, []);
+    setDataProvider(dataProvider => dataProvider.cloneWithRows(todos));
+  }, [todos]);
 
   const layoutProvider = useStateOnly(new LayoutProvider(
     (index) => {

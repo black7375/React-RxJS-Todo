@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react';
+import React, { useCallback  } from 'react';
+import { useDispatch } from 'react-redux';
 import { IoMdCheckmarkCircleOutline, IoIosRadioButtonOff } from 'react-icons/io';
 import { BsTrash } from 'react-icons/bs';
 import { stylesBind } from '../Tools/Tools';
@@ -16,8 +17,10 @@ interface TodoListItemProps {
 
 const TodoListItem = ({ todo, even }: TodoListItemProps) => {
   const { id, text, checked } = todo;
-  const onRemoveDown = useCallback(() => TodoService.onRemove(id), [id]);
-  const onToggleDown = useCallback(() => TodoService.onToggle(id), [id]);
+  const dispatch = useDispatch();
+
+  const onRemoveDown = useCallback(() => dispatch(TodoService.onRemove(id)), [dispatch, id]);
+  const onToggleDown = useCallback(() => dispatch(TodoService.onToggle(id)), [dispatch, id]);
 
   return (
     <div className={cx('TodoListItem', { even })}>

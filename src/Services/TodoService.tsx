@@ -1,6 +1,6 @@
 import { List } from 'immutable';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { scan, map, publishReplay, refCount } from 'rxjs/operators';
+import { combineEpics } from 'redux-observable';
+import { ActionT } from '../Tools/Tools';
 import { TodoItem, TodoItemsT, TodoItemT } from '../Generic/TodoModel';
 
 // == Large Size Sample ========================================================
@@ -15,59 +15,64 @@ const largeInitItems = List((() => {
     }));
   }
   return array;
-})());
+})()) as TodoItemsT;
 
-
-// == Core Events ==============================================================
-const update$ = new BehaviorSubject((todos: TodoItemsT) => todos);
-const insert$ = new Subject<TodoItemT>();
-const remove$ = new Subject<TodoItemT['id']>();
-const toggle$ = new Subject<TodoItemT['id']>();
-
-
-// == Data =====================================================================
 let nextId = largeItemSize + 1;
-const todos$ = update$.pipe(
-  scan((todos, operation) => operation(todos), largeInitItems),
 
-  // cache
-  publishReplay(1),
-  refCount()
-);
+// == Action ===================================================================
+enum TodoItemsE {
+  INSERT = 'TodoEvent/INSERT',
+  REMOVE = 'TodoEvent/REMOVE',
+  TOGGLE = 'TodoEvent/TOGGLE'
+}
+interface TodoItemsA extends TodoItemT, ActionT<TodoItemsE> {
+  todo: TodoItemT;
+}
+
+const insert = (text: TodoItemT['text']) => ({
+  type: TodoItemsE.INSERT,
+  todo: new TodoItem({
+    id:      nextId++,
+    text:    text,
+    checked: false
+  })
+} as TodoItemsA);
+const  remove = (id: TodoItemT['id']) => ({
+  type: TodoItemsE.REMOVE,
+  id: id
+} as TodoItemsA);
+const  toggle = (id: TodoItemT['id']) => ({
+  type: TodoItemsE.TOGGLE,
+  id: id
+} as TodoItemsA);
 
 
-// == Events Implementation ====================================================
-insert$.pipe(
-  map((todo) => (todos: TodoItemsT) => todos.push(todo))
-).subscribe(update$);
-
-remove$.pipe(
-  map((id)   => (todos: TodoItemsT) => todos.filter(todo => todo.id !== id))
-).subscribe(update$);
-
-toggle$.pipe(
-  map((id)   => (todos: TodoItemsT) => todos.map(todo => todo.id === id
-    ? todo.set("checked", !todo.checked)
-    : todo
-  ))
-).subscribe(update$);
-
+// == Reducer ==================================================================
+const todoItemsReducer = (todos = largeInitItems, action: TodoItemsA) => {
+  switch(action.type) {
+    case TodoItemsE.INSERT:
+      return todos.push(action.todo);
+    case TodoItemsE.REMOVE:
+      return todos.filter(todo => todo.id !== action.id);
+    case TodoItemsE.TOGGLE:
+      return todos.map(   todo => todo.id === action.id
+                                ? todo.set("checked", !todo.checked)
+                                : todo
+      );
+    default:
+      return todos;
+  }
+};
 
 // == Interface ================================================================
 const TodoService = {
-  initData: largeInitItems,
-  todos$: todos$,
+  todosEpic: combineEpics(
+  ),
+  todosReducer: todoItemsReducer,
 
-  onInsert: (text: TodoItemT['text']) => {
-    insert$.next(new TodoItem({
-      id:      nextId,
-      text:    text,
-      checked: false
-    }));
-    nextId++;
-  },
-  onRemove: (id: TodoItemT['id']) => remove$.next(id),
-  onToggle: (id: TodoItemT['id']) => toggle$.next(id)
+  onInsert: insert,
+  onRemove: remove,
+  onToggle: toggle
 };
 
 export default TodoService;

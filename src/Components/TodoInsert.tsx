@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { stylesBind } from '../Tools/Tools';
 import TodoService from '../Services/TodoService';
@@ -7,9 +8,11 @@ import styles from './TodoInsert.module.scss';
 const cx = stylesBind(styles);
 
 const TodoInsert = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const onInsert = useCallback(() => dispatch(TodoService.onInsert(value)), [dispatch, value]);
   const onChange = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
   }, []);
@@ -17,13 +20,13 @@ const TodoInsert = () => {
     if (value === '') {
       inputRef.current?.focus();
     } else {
-      TodoService.onInsert(value);
+      onInsert();
       setValue(''); // value Init
     }
 
     // submit's reload event blocking.
     e.preventDefault();
-  }, [value]
+  }, [onInsert, value]
   );
 
   return (
