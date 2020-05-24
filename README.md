@@ -42,6 +42,13 @@ To the unusual point.
 
 
 ### Design
+**Responsive**
+
+![Screenshot_2020-05-25 React App](https://user-images.githubusercontent.com/25581533/82767518-c7b22a00-9e17-11ea-9fb5-62d7cc730e6d.png)
+![Screenshot_2020-05-25 React App(1)](https://user-images.githubusercontent.com/25581533/82767519-c97bed80-9e17-11ea-8583-729e8cf808d9.png)
+![Screenshot_2020-05-25 React App(2)](https://user-images.githubusercontent.com/25581533/82767521-cb45b100-9e17-11ea-952e-f34407f70e59.png)
+![Screenshot_2020-05-25 React App(3)](https://user-images.githubusercontent.com/25581533/82767524-ced93800-9e17-11ea-8ea6-86dfa4ef00e8.png)
+
 **Fluid Size**
 
 A method of fluidly resizing in response to various devices.
