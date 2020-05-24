@@ -10,6 +10,7 @@
   @include flex-container-alignY-center;
   cursor:     pointer;
   width:      100%;
+  height:     100%;
   border-top: 1px solid $darkx3White;
   &.even {
     background-color: $darkWhite;
