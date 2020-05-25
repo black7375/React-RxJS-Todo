@@ -1,0 +1,13 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
+    
+    ## PR Form
+    default_labels: 
+    - "dependencies"
+    commit_message:
+      prefix: "Fix: "
+      prefix_development: "chore"
+      include_scope: true
