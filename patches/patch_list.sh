@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Patch Path
-## TargetPath, PatchPatch, CreatedPatchPath
+## TargetPath, PatchedPath, CreatedPatchPath
 PATCH_PATH=(../node_modules/recyclerlistview/dist/web/core/RecyclerListView.d.ts
             ./recyclerlistview/RecyclerListView.d.ts
             ./created/recyclerlistview-recyclerlistview.patch
