@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://black7375.github.io/React-RxJS-Todo",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.8.0",
+    "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.0.3",
     "@testing-library/user-event": "^10.3.5",
     "@types/classnames": "^2.2.10",
