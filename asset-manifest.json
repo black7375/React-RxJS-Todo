@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/React-RxJS-Todo/static/css/main.f375d98f.chunk.css",
-    "main.js": "/React-RxJS-Todo/static/js/main.b099cd53.chunk.js",
-    "main.js.map": "/React-RxJS-Todo/static/js/main.b099cd53.chunk.js.map",
-    "runtime-main.js": "/React-RxJS-Todo/static/js/runtime-main.545b618d.js",
-    "runtime-main.js.map": "/React-RxJS-Todo/static/js/runtime-main.545b618d.js.map",
+    "main.css": "/React-RxJS-Todo/static/css/main.5d663ac9.chunk.css",
+    "main.js": "/React-RxJS-Todo/static/js/main.ae2b00c0.chunk.js",
+    "main.js.map": "/React-RxJS-Todo/static/js/main.ae2b00c0.chunk.js.map",
+    "runtime-main.js": "/React-RxJS-Todo/static/js/runtime-main.d16ad874.js",
+    "runtime-main.js.map": "/React-RxJS-Todo/static/js/runtime-main.d16ad874.js.map",
     "static/css/2.8ff17cee.chunk.css": "/React-RxJS-Todo/static/css/2.8ff17cee.chunk.css",
-    "static/js/2.c944010e.chunk.js": "/React-RxJS-Todo/static/js/2.c944010e.chunk.js",
-    "static/js/2.c944010e.chunk.js.map": "/React-RxJS-Todo/static/js/2.c944010e.chunk.js.map",
+    "static/js/2.745618e9.chunk.js": "/React-RxJS-Todo/static/js/2.745618e9.chunk.js",
+    "static/js/2.745618e9.chunk.js.map": "/React-RxJS-Todo/static/js/2.745618e9.chunk.js.map",
     "index.html": "/React-RxJS-Todo/index.html",
-    "precache-manifest.ce63f78669a6ae91a6b9e3a3e50bdeff.js": "/React-RxJS-Todo/precache-manifest.ce63f78669a6ae91a6b9e3a3e50bdeff.js",
+    "precache-manifest.46f878a9e7c1a5c08cc4cb0ebe4525d7.js": "/React-RxJS-Todo/precache-manifest.46f878a9e7c1a5c08cc4cb0ebe4525d7.js",
     "service-worker.js": "/React-RxJS-Todo/service-worker.js",
     "static/css/2.8ff17cee.chunk.css.map": "/React-RxJS-Todo/static/css/2.8ff17cee.chunk.css.map",
-    "static/css/main.f375d98f.chunk.css.map": "/React-RxJS-Todo/static/css/main.f375d98f.chunk.css.map",
-    "static/js/2.c944010e.chunk.js.LICENSE.txt": "/React-RxJS-Todo/static/js/2.c944010e.chunk.js.LICENSE.txt"
+    "static/css/main.5d663ac9.chunk.css.map": "/React-RxJS-Todo/static/css/main.5d663ac9.chunk.css.map",
+    "static/js/2.745618e9.chunk.js.LICENSE.txt": "/React-RxJS-Todo/static/js/2.745618e9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.545b618d.js",
+    "static/js/runtime-main.d16ad874.js",
     "static/css/2.8ff17cee.chunk.css",
-    "static/js/2.c944010e.chunk.js",
-    "static/css/main.f375d98f.chunk.css",
-    "static/js/main.b099cd53.chunk.js"
+    "static/js/2.745618e9.chunk.js",
+    "static/css/main.5d663ac9.chunk.css",
+    "static/js/main.ae2b00c0.chunk.js"
   ]
 }
