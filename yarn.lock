@@ -4804,10 +4804,10 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
-fluid-size@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fluid-size/-/fluid-size-1.0.0.tgz#db1b4fedf30089cdbdd3df408fc05ceadb88a23e"
-  integrity sha512-faWHZHOX2RiOq+lBDKZsG+aF+e6zUxpwn93zt47BBYNZewaLpqOpIbBOCpHONyKdXWntCsUa2QI5KyhUdUo4PA==
+fluid-size@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/fluid-size/-/fluid-size-1.2.1.tgz#7842dbe4da49bebdee958f1bebe3c5cd1d522577"
+  integrity sha512-xDVhgVvRGYpvvqu6xlJRkIaf5QN08iw6uVR0ss9o8TPuiCXMPBBBHXKnj17Z1Lgwl9oLeRwFop64dFC9qQZr3Q==
   dependencies:
     include-media "^1.4.9"
     mathsass "^0.11.0"
