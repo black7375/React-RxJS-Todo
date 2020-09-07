@@ -30,7 +30,7 @@
     "react-icons": "^3.10.0",
     "react-scripts": "3.4.1",
     "recyclerlistview": "^3.0.0",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.3",
     "ts-object-utils": "^0.0.5",
     "typescript": "^3.9.7"
   },
