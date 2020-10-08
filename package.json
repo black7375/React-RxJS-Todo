@@ -24,7 +24,7 @@
     "jest-dom": "^4.0.0",
     "node-sass": "^4.14.0",
     "normalize.css": "^8.0.1",
-    "postcss": "^7.0.32",
+    "postcss": "^8.1.1",
     "postinstall-postinstall": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
