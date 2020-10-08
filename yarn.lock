@@ -5578,10 +5578,10 @@ in-publish@^2.0.0:
   resolved "https://registry.yarnpkg.com/in-publish/-/in-publish-2.0.1.tgz#948b1a535c8030561cea522f73f78f4be357e00c"
   integrity sha512-oDM0kUSNFC31ShNxHKUyfZKy8ZeXZBWMjMdZHKLOk13uvT27VTL/QzRGfRUcevJhpkZAvlhPYuXkF7eNWrtyxQ==
 
-include-media-or@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/include-media-or/-/include-media-or-1.0.3.tgz#f38385eae405a73240548767bd7fc37385c5f39c"
-  integrity sha512-zNvQpJ4NBj9PzDN2YvstGofFO2Gh8I29i+9/KANezJU8QmclBjUaQg9NN350tfz50RQuixORxtz7huySwAiE0A==
+include-media-or@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/include-media-or/-/include-media-or-1.0.4.tgz#7a11529c7ddc1c8c5591c468689f63761ce08ed4"
+  integrity sha512-rf2FZENDHFAXfXYlYkjFI8ibpTDqn9CZx/fxVehxNTFKbjGPTZ0s+ohO/dFw3ge1C9r3kdz5vpKs7I7wUmp60w==
 
 include-media@^1.4.9:
   version "1.4.9"
