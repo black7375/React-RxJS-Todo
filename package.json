@@ -29,7 +29,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "4.0.0",
     "recyclerlistview": "^3.0.0",
     "rxjs": "^6.6.3",
     "ts-object-utils": "^0.0.5",
