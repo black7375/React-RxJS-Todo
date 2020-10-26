@@ -4813,14 +4813,14 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
-fluid-size@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/fluid-size/-/fluid-size-1.4.1.tgz#e87c69b31e7ccce49021b6d7686ea065a036e713"
-  integrity sha512-rduNRevhOuUquxxnrtlKexG56rBVHzJaxkZPgksvEKgEhvQtnk8977GQUCXSNMEhOGL4uOqCkIMDwYOCiE3V6A==
+fluid-size@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/fluid-size/-/fluid-size-1.5.0.tgz#8f280170d1fb5ba26acc63110a04aa3a3b1b83ff"
+  integrity sha512-s8pEqUYTl2aD2RVmso+g/GGzyNej0aE2FG71rJ/c46aPOZy3h42tXTSoqoDy1cwhod6pTuKpEyOaDmjSetfOmA==
   dependencies:
     include-media "^1.4.9"
     mathsass "^0.11.0"
-    sass-unitconverter "^2.4.0"
+    sass-unitconverter "^2.5.2"
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -9740,7 +9740,7 @@ sass-loader@8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
-sass-unitconverter@^2.4.0:
+sass-unitconverter@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/sass-unitconverter/-/sass-unitconverter-2.5.2.tgz#e04160957a314cd5a900ac61a331f382531a8916"
   integrity sha512-rH79HuflTvslOJw/ZO1lqxuk4fHNDPStj3+5mh+fndm2G4S8NuJiuNu6otvMTW5bacsBpy9iwrz6vnNRFbifkw==
